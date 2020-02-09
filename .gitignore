@@ -1,3 +1,7 @@
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
 # Compiled class file
 *.class
 
@@ -24,6 +28,15 @@ target/**
 hs_err_pid*
 
 #IDEs
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
 # eclipse specific
 *.pydevproject
 .project
@@ -39,7 +52,26 @@ local.properties
 .classpath
 .settings/
 .loadpath
-# IntelliJ
+### IntelliJ IDEA ###
 .idea
+*.iws
+*.iml
+*.ipr
+
+### Maven ###
+.mvn
+mvnw
+mvnw.cmd
+
+### Firebase ###
+.firebase
 # sbteclipse plugin
 .target
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
