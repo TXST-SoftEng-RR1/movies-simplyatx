@@ -24,9 +24,9 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiEndPointsInfo() {
-        return new ApiInfoBuilder().title("Spring Boot REST API")
-                .description("Connected Graphs REST API")
-                .contact(new Contact("Boris", "borislavsabotinov.com", "contact@borislavsabotinov.com"))
+        return new ApiInfoBuilder().title("SimplyATX Movie API")
+                .description("Back-end component for the SimplyATX movie website.")
+                .contact(new Contact("Justin, Lanlan, Boris", "simplyatx.com", "admin@simplyatx.com"))
                 .license("GNU Affero General Public License")
                 .licenseUrl("http://www.gnu.org/licenses/")
                 .version("1.0.0")
