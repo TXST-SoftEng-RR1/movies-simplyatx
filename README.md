@@ -78,9 +78,9 @@ http://localhost:8080/swagger-ui.html
 ### Deploy the back-end
 
 1. Build Docker image:
-`gcloud builds submit --tag gcr.io/simplyatx/movies`
+`gcloud builds submit --tag gcr.io/movies-simplyatx/movies`
 2. Deploy the image:
-`gcloud beta run deploy --image gcr.io/simplyatx/movies`
+`gcloud beta run deploy --image gcr.io/movies-simplyatx/movies`
     - Select [1] Cloud Run (fully managed) for the target platform
     - Select [3] us-central1 for the region
     - Press `Enter` to select the default for service name (movies)
