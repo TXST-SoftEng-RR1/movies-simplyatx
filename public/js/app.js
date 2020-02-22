@@ -69,17 +69,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
         ui.start('#firebaseui-auth-container', uiConfig);
 
+        let displayName;
+        let email;
+        let emailVerified;
+        let photoURL;
+        let uid;
+        let phoneNumber;
+        let providerData;
+
         initApp = function() {
             firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
                     // User is signed in.
-                    var displayName = user.displayName;
-                    var email = user.email;
-                    var emailVerified = user.emailVerified;
-                    var photoURL = user.photoURL;
-                    var uid = user.uid;
-                    var phoneNumber = user.phoneNumber;
-                    var providerData = user.providerData;
+                    displayName = user.displayName;
+                    email = user.email;
+                    emailVerified = user.emailVerified;
+                    photoURL = user.photoURL;
+                    uid = user.uid;
+                    phoneNumber = user.phoneNumber;
+                    providerData = user.providerData;
                     user.getIdToken().then(function(accessToken) {
                         document.getElementById('sign-in-status').textContent = 'Signed in';
                         document.getElementById('sign-in').textContent = 'Sign out';
@@ -93,6 +101,13 @@ document.addEventListener('DOMContentLoaded', function() {
                             accessToken: accessToken,
                             providerData: providerData
                         }, null, '  ');
+
+                        document.getElementById('signInBtn').classList.add("hidden");
+                        document.getElementById('acctBtn').classList.remove("hidden");
+
+                        let profileImageElem = document.createElement("img");
+                        profileImageElem.src = photoURL;
+                        document.getElementById("profileImg").appendChild(profileImageElem);
                     });
                 } else {
                     // User is signed out.
