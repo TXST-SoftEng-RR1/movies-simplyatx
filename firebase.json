@@ -14,7 +14,7 @@
       {
         "source": "**",
         "run":{
-          "serviceId": "simplyatx",
+          "serviceId": "movies",
           "region": "us-central1"
         }
       }
