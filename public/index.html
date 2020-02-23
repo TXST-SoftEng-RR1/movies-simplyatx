@@ -2,8 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <!-- https://favicon.io/emoji-favicons/movie-camera/ -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/ico/favicon-16x16.png">
+    <link rel="manifest" href="/img/ico/site.webmanifest">
+
+    <title>Austin Movies Made Simple!</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/7.8.0/firebase-app.js"></script>
@@ -19,18 +25,30 @@
     <!-- CDN FirebaseUI drop-in for authentication -->
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- JS, Popper.js, and JQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </head>
   <body>
-    <div>
-      <!-- The surrounding HTML is left untouched by FirebaseUI.
-     Your app may use that space for branding, controls and other customizations.-->
-      <div id="firebaseui-auth-container"></div>
-      <div id="loader">Loading...</div>
-    </div>
+
+
+    <nav class="navbar fixed-top navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="/img/ico/favicon-32x32.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        SimplyATX - Austin movies made simple!
+      </a>
+    </nav>
 
     <div id="message">
       <h2>Welcome</h2>
       <h1>Firebase Hosting Setup Complete</h1>
+      <button type="button" id="signInBtn" class="btn-primary" data-toggle="modal" data-target="#exampleModal">Sign-up / Sign-in</button>
+      <button type="button" id="acctBtn" class="btn-primary hidden" data-toggle="modal" data-target="#acctModal">My Account</button>
+
       <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
       <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
       <div id="sign-in-status"></div>
@@ -38,6 +56,55 @@
       <pre id="account-details"></pre>
     </div>
     <p id="load">Firebase SDK Loading&hellip;</p>
+
+    <!-- Sign-in Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <!-- The surrounding HTML is left untouched by FirebaseUI.
+             Your app may use that space for branding, controls and other customizations.-->
+              <div id="firebaseui-auth-container"></div>
+              <div id="loader">Loading...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account Modal -->
+    <div class="modal fade" id="acctModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="acctModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="profileImg">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
     <script rel="script" type="application/javascript" src="/js/app.js"></script>
+
+
+
+
   </body>
 </html>

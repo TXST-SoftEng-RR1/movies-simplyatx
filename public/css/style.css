@@ -70,5 +70,8 @@ body {
     border-top: 16px solid #ffa100;
   }
 }
+.hidden {
+  display: none;
+}
 
 /*# sourceMappingURL=style.css.map */
