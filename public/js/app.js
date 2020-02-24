@@ -62,9 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 firebase.auth.GoogleAuthProvider.PROVIDER_ID,
             ],
             // Terms of service url.
-            tosUrl: '/',
+            tosUrl: '/termsOfService',
             // Privacy policy url.
-            privacyPolicyUrl: '/'
+            privacyPolicyUrl: '/privacyPolicy'
         };
 
         ui.start('#firebaseui-auth-container', uiConfig);
