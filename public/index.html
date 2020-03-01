@@ -25,7 +25,8 @@
     <!-- CDN FirebaseUI drop-in for authentication -->
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-
+    <!-- Place your kit's code here FontAwesome -->
+    <script src="https://kit.fontawesome.com/026b1d2076.js" crossorigin="anonymous"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- JS, Popper.js, and JQuery -->
@@ -36,11 +37,43 @@
   <body>
 
 
-    <nav class="navbar fixed-top navbar-light bg-light">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">
-        <img src="/img/ico/favicon-32x32.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        SimplyATX - Austin movies made simple!
+        <img src="/img/ico/favicon-32x32_inv.png" width="40" height="40" class="d-inline-block align-top" alt="">
+        <img src="/img/simplyatx_logo_cropped.png" width="130" height="40">
       </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link">Left Link 1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Left Link 2</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link">Right Link 1</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<!--            <i ></i>-->
+            <img class="far fa-user" id="myAcctImgPreview" src="">
+            My Profile
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#" id="signOutBtn">Sign out</a>
+          </div>
+        </li>
+      </ul>
+      </div>
+
+
+
     </nav>
 
     <div id="message">
@@ -100,7 +133,7 @@
 
 
 
-
+    <a href="https://www.vecteezy.com/free-vector/popcorn">Popcorn Vectors by Vecteezy</a>
     <script rel="script" type="application/javascript" src="/js/app.js"></script>
 
 

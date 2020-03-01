@@ -108,6 +108,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         let profileImageElem = document.createElement("img");
                         profileImageElem.src = photoURL;
                         document.getElementById("profileImg").appendChild(profileImageElem);
+                        if (photoURL !== null) {
+                            document.getElementById('myAcctImgPreview').appendChild(profileImageElem);
+                        }
                     });
                 } else {
                     // User is signed out.
@@ -128,4 +131,19 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error(e);
         document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
     }
+
+    function logout(event) {
+        firebase.auth().signOut()
+            .then(function() {
+                // Sign-out successful.
+                console.log("sign out success");
+            })
+            .catch(function(error) {
+                console.log("sign out error");
+            });
+        initApp();
+    }
+
+    document.getElementById('signOutBtn').addEventListener('click', logout);
+
 });
