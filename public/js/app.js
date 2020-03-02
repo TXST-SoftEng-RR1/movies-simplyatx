@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
             signInOptions: [
                 {
                     provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-                    requireDisplayName: false
+                    requireDisplayName: true
                 },
                 // Leave the lines as is for the providers you want to offer your users.
                 firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -89,8 +89,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     phoneNumber = user.phoneNumber;
                     providerData = user.providerData;
                     user.getIdToken().then(function(accessToken) {
-                        document.getElementById('sign-in-status').textContent = 'Signed in';
-                        document.getElementById('sign-in').textContent = 'Sign out';
                         document.getElementById('account-details').textContent = JSON.stringify({
                             displayName: displayName,
                             email: email,
@@ -102,8 +100,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             providerData: providerData
                         }, null, '  ');
 
-                        document.getElementById('signInBtn').classList.add("hidden");
-                        document.getElementById('acctBtn').classList.remove("hidden");
+                        // document.getElementById('signInBtn').classList.add("hidden");
+                        // document.getElementById('acctBtn').classList.remove("hidden");
 
                         let profileImageElem = document.createElement("img");
                         profileImageElem.src = photoURL;
