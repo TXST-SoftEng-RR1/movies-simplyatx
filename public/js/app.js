@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
             signInOptions: [
                 {
                     provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-                    requireDisplayName: false
+                    requireDisplayName: true
                 },
                 // Leave the lines as is for the providers you want to offer your users.
                 firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -89,8 +89,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     phoneNumber = user.phoneNumber;
                     providerData = user.providerData;
                     user.getIdToken().then(function(accessToken) {
-                        document.getElementById('sign-in-status').textContent = 'Signed in';
-                        document.getElementById('sign-in').textContent = 'Sign out';
                         document.getElementById('account-details').textContent = JSON.stringify({
                             displayName: displayName,
                             email: email,
@@ -102,12 +100,15 @@ document.addEventListener('DOMContentLoaded', function() {
                             providerData: providerData
                         }, null, '  ');
 
-                        document.getElementById('signInBtn').classList.add("hidden");
-                        document.getElementById('acctBtn').classList.remove("hidden");
+                        // document.getElementById('signInBtn').classList.add("hidden");
+                        // document.getElementById('acctBtn').classList.remove("hidden");
 
                         let profileImageElem = document.createElement("img");
                         profileImageElem.src = photoURL;
                         document.getElementById("profileImg").appendChild(profileImageElem);
+                        if (photoURL !== null) {
+                            document.getElementById('myAcctImgPreview').appendChild(profileImageElem);
+                        }
                     });
                 } else {
                     // User is signed out.
@@ -128,4 +129,19 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error(e);
         document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
     }
+
+    function logout(event) {
+        firebase.auth().signOut()
+            .then(function() {
+                // Sign-out successful.
+                console.log("sign out success");
+            })
+            .catch(function(error) {
+                console.log("sign out error");
+            });
+        initApp();
+    }
+
+    document.getElementById('signOutBtn').addEventListener('click', logout);
+
 });

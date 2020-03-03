@@ -25,7 +25,8 @@
     <!-- CDN FirebaseUI drop-in for authentication -->
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-
+    <!-- Place your kit's code here FontAwesome -->
+    <script src="https://kit.fontawesome.com/026b1d2076.js" crossorigin="anonymous"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- JS, Popper.js, and JQuery -->
@@ -36,26 +37,89 @@
   <body>
 
 
-    <nav class="navbar fixed-top navbar-light bg-light">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">
-        <img src="/img/ico/favicon-32x32.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        SimplyATX - Austin movies made simple!
+        <img src="/img/ico/favicon-32x32_inv.png" width="40" height="40" class="d-inline-block align-top" alt="">
+        <img src="/img/simplyatx_logo_cropped.png" width="130" height="40">
       </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+<!--        <ul class="navbar-nav mr-auto">-->
+<!--          <li class="nav-item active">-->
+<!--            <a class="nav-link">Left Link 1</a>-->
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+<!--            <a class="nav-link">Left Link 2</a>-->
+<!--          </li>-->
+<!--        </ul>-->
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">About this site</a>
+          </li>
+          <!-- for new or existing users -->
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">Sign Up</a>
+          </li>
+          <li class="nav-item" id="signInBtn">
+            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">Log In</a>
+          </li>
+
+          <!-- will replace the sign up and log in buttons once user logs in -->
+          <li id="userAccountMenu"  class="nav-item dropdown hidden">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img class="far fa-user" id="myAcctImgPreview" src="">
+              My Profile
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#acctModal">Profile</a>
+              <a class="dropdown-item" href="#">Settings and Preferences</a>
+              <a class="dropdown-item" href="#" id="signOutBtn">Sign out</a>
+            </div>
+          </li>
+        </ul>
+      </div>
     </nav>
 
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <button type="button" id="signInBtn" class="btn-primary" data-toggle="modal" data-target="#exampleModal">Sign-up / Sign-in</button>
-      <button type="button" id="acctBtn" class="btn-primary hidden" data-toggle="modal" data-target="#acctModal">My Account</button>
-
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-      <div id="sign-in-status"></div>
-      <div id="sign-in"></div>
-      <pre id="account-details"></pre>
-    </div>
     <p id="load">Firebase SDK Loading&hellip;</p>
+
+    <div class="d-md-flex h-md-100 align-items-center">
+      <div class="col-md-6 p-0 bg-indigo h-md-100">
+        <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
+          <div class=" pb-5">
+            <img src="/img/reel.png">
+            <h1 class="mb-0 mt-3 display-4">What are you looking for?</h1>
+            <br/>
+            <div class="input-group">
+              <input class="form-control py-2 rounded-pill mr-1 pr-5" type="search" value="" id="example-search-input" placeholder="Enter a movie or show title">
+              <span class="input-group-append">
+                    <button class="btn rounded-pill border-0 ml-n5" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 p-0 bg-white h-md-100 loginarea">
+        <div class="d-md-flex align-items-center h-md-100 p-5 justify-content-center">
+          <form class="border rounded p-5">
+            <img src="/img/movie_ticket.png" height="100" width="250">
+            <p>
+              Display showtime information for search results when clicked.
+            </p>
+            <p>
+              Display specialty showings and offerings in Austin, TX otherwise.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
 
     <!-- Sign-in Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -103,7 +167,18 @@
 
     <script rel="script" type="application/javascript" src="/js/app.js"></script>
 
-
+    <div class="footer navbar-dark bg-dark">
+      <!-- Copyright -->
+      <div class="text-center py-3">© 2020 Copyright:
+        <a href="https://simplyatx.com/"> SimplyATX.com </a>
+        |
+        <a href="/privacyPolicy">Privacy</a>
+        |
+        <a href="/termsOfService">ToS</a>
+        |
+        <a href="https://www.vecteezy.com/free-vector/popcorn"> Popcorn Vectors by Vecteezy</a>
+      </div>
+    </div>
 
 
   </body>
