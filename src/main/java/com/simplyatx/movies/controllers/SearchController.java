@@ -34,7 +34,7 @@ Logger logger = Logger.getLogger(SearchController.class.getName());
     }
 
     private String getstringfromurl(String url) throws IOException {
-        System.out.println(url);
+        logger.log(Level.INFO, url);
         URLConnection urlc = new URL(url).openConnection();
         urlc.setRequestProperty("User-Agent",
                 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36");
@@ -67,7 +67,6 @@ Logger logger = Logger.getLogger(SearchController.class.getName());
         JSONParser jp = new JSONParser();
         String movieid = jp.parse_IMDB_ID_result(packet);
         String html_string = getstringfromurl(String.format(imdburl, movieid));
-        // next parse this result for relevant data for display!
         JSONBuilder jb = new JSONBuilder(jp.parse_IMDB_DisplayJson(html_string));
         return jb.make();
     }
