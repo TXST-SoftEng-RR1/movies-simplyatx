@@ -1,6 +1,33 @@
+/*
+ * Copyright (c) 2020. SimplyATX.com
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package com.simplyatx.movies.controllers;
+
+/**
+ *
+ */
 class JSONParser {
 
-    public String parse_AFI_results(String json) {// Need to add checks for null results
+    /**
+     *
+     * @param json raw AFI results
+     * @return
+     */
+    public String parseAfiResults(String json) {
+        // Need to add checks for null results
         if (json.indexOf("\"Results\":null") != -1)
             return "\"Results\":[], \"Count\":0";
         int fi = json.indexOf("\"Results");
@@ -9,20 +36,28 @@ class JSONParser {
         return start.substring(0, li);
     }
 
-    public String parse_IMDB_ID_result(String json) {
+    /**
+     *
+     * @param json raw IMDB results
+     * @return
+     */
+    public String parseImdbIdResult(String json) {
         int idi = json.indexOf("\"id\":");
         if (idi == -1)
             return null;
         String id_parse = json.substring(idi + 6);
-        String id = id_parse.substring(0, id_parse.indexOf("\",\""));
-        return id;
+        return id_parse.substring(0, id_parse.indexOf("\",\""));
     }
 
-    public String parse_IMDB_DisplayJson(String html_string) {
-        int jsoni = html_string.indexOf("<script type=\"application/ld+json\">");
-        String start = html_string.substring(jsoni + 36);
+    /**
+     *
+     * @param htmlString
+     * @return
+     */
+    public String parseImdbDisplayJson(String htmlString) {
+        int jsoni = htmlString.indexOf("<script type=\"application/ld+json\">");
+        String start = htmlString.substring(jsoni + 36);
         int end = start.indexOf("}</script>");
-        String json = start.substring(0, end);
-        return json;
+        return start.substring(0, end);
     }
 }
