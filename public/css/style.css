@@ -77,7 +77,7 @@ body {
 /* Fixes dropdown menus placed on the right side */
 .ml-auto .dropdown-menu {
   left: auto !important;
-  right: 0px;
+  right: 0;
 }
 
 .footer {

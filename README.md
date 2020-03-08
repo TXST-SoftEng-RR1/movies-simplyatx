@@ -82,7 +82,7 @@ http://localhost:8080/swagger-ui.html
 2. Deploy the image:
 `gcloud beta run deploy --image gcr.io/movies-simplyatx/movies`
     - Select [1] Cloud Run (fully managed) for the target platform
-    - Select [3] us-central1 for the region
+    - Select [6] us-central1 for the region
     - Press `Enter` to select the default for service name (movies)
 
 ### Reference Documentation

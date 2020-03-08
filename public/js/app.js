@@ -89,32 +89,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     phoneNumber = user.phoneNumber;
                     providerData = user.providerData;
                     user.getIdToken().then(function(accessToken) {
-                        document.getElementById('account-details').textContent = JSON.stringify({
-                            displayName: displayName,
-                            email: email,
-                            emailVerified: emailVerified,
-                            phoneNumber: phoneNumber,
-                            photoURL: photoURL,
-                            uid: uid,
-                            accessToken: accessToken,
-                            providerData: providerData
-                        }, null, '  ');
+                        document.getElementById('userLogInNavItem').classList.add("hidden");
+                        document.getElementById('userAccountNavItem').classList.remove("hidden");
+                        document.getElementById('userName').innerHTML = displayName;
+                        document.getElementById('userNameForNav').innerHTML = displayName;
 
-                        // document.getElementById('signInBtn').classList.add("hidden");
-                        // document.getElementById('acctBtn').classList.remove("hidden");
-
-                        let profileImageElem = document.createElement("img");
-                        profileImageElem.src = photoURL;
-                        document.getElementById("profileImg").appendChild(profileImageElem);
                         if (photoURL !== null) {
-                            document.getElementById('myAcctImgPreview').appendChild(profileImageElem);
+                            document.getElementById('myAcctImgPreview').classList.remove("far", "fa-user");
+                            document.getElementById('myAcctImgPreview').height = 30;
+                            document.getElementById('myAcctImgPreview').width = 30;
+                            document.getElementById('myAcctImgPreview').src = photoURL;
+                            document.getElementById('userProfilePic').src = photoURL;
+                            document.getElementById('userProfilePic').height = 150;
+                            document.getElementById('userProfilePic').width = 150;
                         }
+
+                        document.getElementById('userEmail').placeholder = email;
+                        if (emailVerified) {
+                            document.getElementById('userEmailVerified').checked = true;
+                        }
+
                     });
                 } else {
                     // User is signed out.
-                    document.getElementById('sign-in-status').textContent = 'Signed out';
-                    document.getElementById('sign-in').textContent = 'Sign in';
-                    document.getElementById('account-details').textContent = 'null';
+                    document.getElementById('userAccountNavItem').classList.add("hidden");
+                    document.getElementById('userLogInNavItem').classList.remove("hidden");
                 }
             }, function(error) {
                 console.log(error);
