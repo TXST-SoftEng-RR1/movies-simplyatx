@@ -16,26 +16,36 @@
 
 package com.simplyatx.movies.controllers;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 /**
- * @author Borislav S. Sabotinov
- * This controller serves views to the fron-tend
+ * @author Justin Franz
  */
-@Controller
-public class ViewsController {
-    /**
-     *
-     * @return view privacyPolicy.html
-     */
-    @RequestMapping(value={"/privacyPolicy"})
-    public String privacyPolicy() { return "privacyPolicy"; }
+class JSONBuilder {
+    private StringBuilder sb = new StringBuilder("{");
+
+    public JSONBuilder() {
+    }
 
     /**
      *
-     * @return view termsOfService.html
+     * @param json
      */
-    @RequestMapping(value={"/termsOfService"})
-    public String termsOfService() { return "termsOfService"; }
+    public JSONBuilder(String json) {
+        sb.append(json);
+    }
+
+    public void add(String key, String value) {
+        sb.append(key).append(":").append(value);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String make() {
+        return sb.append("}").toString();
+    }
+
+    public void empty() {
+        sb.delete(0, sb.length());
+    }
 }

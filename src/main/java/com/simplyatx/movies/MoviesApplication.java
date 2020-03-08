@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. Borislav S. Sabotinov
+ * Copyright (c) 2020. SimplyATX.com
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -19,8 +19,17 @@ package com.simplyatx.movies;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author Borislav S. Sabotinov
+ */
 @SpringBootApplication
 public class MoviesApplication {
+
+    /**
+     * Launches SpringBoot application, which listens on port 8080
+     * {@code localhost:8080}
+     * @param args
+     */
     public static void main(String[] args) {
         SpringApplication.run(MoviesApplication.class, args);
     }
