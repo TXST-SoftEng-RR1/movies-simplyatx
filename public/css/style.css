@@ -7,7 +7,7 @@ body {
   color: rgba(0, 0, 0, 0.87);
   font-family: Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
-  padding: 0;
+  padding: 60px 0 0;
 }
 
 #message {
@@ -96,6 +96,10 @@ body {
 @media (min-width: 768px) {
   .h-md-100 {
     height: 100vh;
+  }
+
+  .h-md-80 {
+    height: 80vh;
   }
 }
 .btn-round {
