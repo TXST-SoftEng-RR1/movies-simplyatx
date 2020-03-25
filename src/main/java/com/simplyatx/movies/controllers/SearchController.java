@@ -103,7 +103,7 @@ public class SearchController {
      */
     @GetMapping("/focusedSearch")
     public String search(String searchterm, String fieldtype, String sorttype) throws IOException {
-        String packet = getStringFromUrl(String.format(afiUrl, searchterm, fieldtype, sorttype));
+        String packet = getStringFromUrl(String.format(afiUrl, URLEncoder.encode(searchterm, "UTF-8"), fieldtype, sorttype));
         JSONParser jp = new JSONParser();
         JSONBuilder jb = new JSONBuilder(jp.parseAfiResults(packet));
         return jb.make();
