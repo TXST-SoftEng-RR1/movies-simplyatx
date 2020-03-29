@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet"
+          href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/errorStyle.css}" />
+    <title>Oopsie Dopsie!</title>
+</head>
+<body>
+    <div class="alert alert-dark " role="alert">
+        <div id="message">
+            <img class="align-items-center" src="/error.gif" alt="">
+
+            <hr/>
+            <h2>Uh. Oh. Oh-No!</h2>
+            An error occurred and something went wrong.
+            <a href="/"> Click here to warp to safety</a>
+        </div>
+    </div>
+
+
+</body>
+</html>

@@ -34,11 +34,12 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- JS, Popper.js, and JQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script  src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </head>
   <body>
+
 
     <!-- NAVBAR -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -75,11 +76,14 @@
         </ul>
       </div>
     </nav>
+    <!-- END NAVBAR -->
 
-    <p id="load">Firebase SDK Loading&hellip;</p>
+
+
+
 
     <!-- LEFT PANEL: SEARCH AND RESULTS -->
-    <div class="d-md-flex h-md-100 align-items-center">
+    <div class="d-md-flex h-md-80 align-items-center">
       <div class="col-md-6 p-0 bg-indigo h-md-100">
         <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
           <div class=" pb-5">
@@ -87,17 +91,19 @@
             <h1 class="mb-0 mt-3 display-4">What are you looking for?</h1>
             <br/>
             <div class="input-group">
-              <input class="form-control py-2 rounded-pill mr-1 pr-5" type="search" value="" id="example-search-input" placeholder="Enter a movie or show title">
+              <input class="form-control py-2 rounded-pill mr-1 pr-5" type="search" value="" id="searchInput" placeholder="Enter a movie or show title">
               <span class="input-group-append">
-                    <button class="btn rounded-pill border-0 ml-n5" type="button">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </span>
+                  <button class="btn rounded-pill border-0 ml-n5" id="searchBtn" type="button">
+                      <i class="fa fa-search"></i>
+                  </button>
+              </span>
             </div>
             </a>
           </div>
         </div>
       </div>
+      <!-- END LEFT PANEL: SEARCH AND RESULTS -->
+
 
       <!-- RIGHT PANEL: SHOWTIME INFO AND RESULT DETAILS -->
       <div class="col-md-6 p-0 bg-white h-md-100">
@@ -114,6 +120,8 @@
         </div>
       </div>
     </div>
+    <!-- END RIGHT PANEL: SHOWTIME INFO AND RESULT DETAILS -->
+
 
 
     <!-- About Modal -->
@@ -145,6 +153,8 @@
         </div>
       </div>
     </div>
+    <!-- END About Modal -->
+
 
     <!-- Sign Up / Log In Modal -->
     <div class="modal fade" id="logInModal" tabindex="-1" role="dialog" aria-labelledby="logInModalLabel" aria-hidden="true">
@@ -169,6 +179,7 @@
         </div>
       </div>
     </div>
+    <!-- END Sign Up / Log In Modal -->
 
     <!-- Account Modal -->
     <div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="accountModalLabel" aria-hidden="true">
@@ -184,7 +195,7 @@
             <div class="container">
               <div class="media">
                 <div style="filter: sepia(50%);">
-                <img id="userProfilePic" class="align-self-start mr-3" src="..." alt="User profile picture." style="border-radius: 8px; filter: drop-shadow(8px 8px 10px #955c28);">
+                <img id="userProfilePic" class="align-self-start mr-3" src="" alt="User profile picture." style="border-radius: 8px; filter: drop-shadow(8px 8px 10px #955c28);">
                 </div>
                 <div class="media-body">
                   <h5 id="userName" class="mt-0">Top-aligned media</h5>
@@ -210,11 +221,26 @@
         </div>
       </div>
     </div>
+    <!-- END Account Modal -->
+
+    <!-- loader -->
+    <div>
+      <!-- About Modal -->
+      <div class="modal fade" id="cover" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="graphics-object">
+            <div class="modal-body">
+              <img src="/img/countdown.gif" height="275" width="500" alt="">
+            </div>
+        </div>
+      </div>
+      <!-- END About Modal -->
+    </div>
+
 
     <!-- FOOTER -->
     <div class="footer navbar-dark bg-dark">
       <!-- Copyright -->
-      <div class="text-center py-3"><i class="fas fa-copyright text-cyan"></i> 2020:&nbsp;
+      <div class="text-center pt-3"><i class="fas fa-copyright text-cyan"></i> 2020:&nbsp;
         <a class="text-white" href="https://simplyatx.com/">SimplyATX.com</a>&nbsp;
         <i class="fas fa-grip-vertical text-cyan"></i>&nbsp;
         <a class="text-white" href="/privacyPolicy" target="_blank">Privacy</a>&nbsp;
@@ -223,9 +249,12 @@
         <i class="fas fa-grip-vertical text-cyan"></i>&nbsp;
         <a class="text-white" href="https://www.vecteezy.com/free-vector/popcorn" target="_blank">Popcorn Vectors by Vecteezy</a>&nbsp;
       </div>
+      <div id="load" style="color: #d42c08">Firebase SDK Loading&hellip;</div>
     </div>
+    <!-- END FOOTER -->
 
     <!-- CUSTOM SCRIPTS -->
     <script rel="script" type="application/javascript" src="/js/app.js"></script>
+    <script rel="script" type="application/javascript" src="/js/restUtility.js"></script>
   </body>
 </html>

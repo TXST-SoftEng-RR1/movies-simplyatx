@@ -41,7 +41,6 @@ import java.util.logging.Logger;
 @RestController
 public class SearchController {
     Logger logger = Logger.getLogger(SearchController.class.getName());
-//    @Value("${TARGET:World}")
 
     @Value("${afiUrl}")
     private String afiUrl;
@@ -84,26 +83,26 @@ public class SearchController {
 
     /**
      *
-     * @param searchterm
+     * @param userInput
      * @return
      * @throws IOException
      */
-    @GetMapping("/search")
-    public String search(String searchterm) throws IOException {
-        return search(searchterm, "ALL", "sortByTitle");
+    @GetMapping("/searchAfi")
+    public String search(String userInput) throws IOException {
+        return search(userInput, "ALL", "sortByTitle");
     }
 
     /**
      *
-     * @param searchterm
+     * @param userInput
      * @param fieldtype
      * @param sorttype
      * @return
      * @throws IOException
      */
-    @GetMapping("/focusedSearch")
-    public String search(String searchterm, String fieldtype, String sorttype) throws IOException {
-        String packet = getStringFromUrl(String.format(afiUrl, URLEncoder.encode(searchterm, "UTF-8"), fieldtype, sorttype));
+    @GetMapping("/searchAfiFocused")
+    public String search(String userInput, String fieldtype, String sorttype) throws IOException {
+        String packet = getStringFromUrl(String.format(afiUrl, URLEncoder.encode(userInput, "UTF-8"), fieldtype, sorttype));
         JSONParser jp = new JSONParser();
         JSONBuilder jb = new JSONBuilder(jp.parseAfiResults(packet));
         return jb.make();
@@ -111,17 +110,24 @@ public class SearchController {
 
     /**
      *
-     * @param moviename
+     * @param userInput
      * @return
      * @throws IOException
      */
-    @GetMapping("/retrieve")
-    public String retrieve(String moviename) throws IOException {
-        char firstchar = moviename.toLowerCase(Locale.ENGLISH).charAt(0);
-        String packet = getStringFromUrl(String.format(imdbIdUrl, firstchar, URLEncoder.encode(moviename, "UTF-8")));
+    @GetMapping("/searchImdb")
+    public String retrieve(String userInput) throws IOException {
+        char firstChar = userInput.toLowerCase(Locale.ENGLISH).charAt(0);
+        String packet = getStringFromUrl(String.format(imdbIdUrl, firstChar, URLEncoder.encode(userInput, "UTF-8")));
         JSONParser jp = new JSONParser();
-        String movieid = jp.parseImdbIdResult(packet);
-        String html_string = getStringFromUrl(String.format(imdbUrl, movieid));
+        String movieId = jp.parseImdbIdResult(packet);
+
+        // parseImdbIdResult returns null if 'id:' does not exist in the JSON response
+        // so, do not error out but instead indicate no results are available for search parameter
+        if (movieId == null) {
+            return "null";
+        }
+
+        String html_string = getStringFromUrl(String.format(imdbUrl, movieId));
         JSONBuilder jb = new JSONBuilder(jp.parseImdbDisplayJson(html_string));
         return jb.make();
     }
