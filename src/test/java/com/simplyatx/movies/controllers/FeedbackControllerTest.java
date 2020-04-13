@@ -25,8 +25,6 @@ class FeedbackControllerTest {
 
     @Test
     void sendEmail() {
-        control.setProperties();
-        control.setSession();
         String res = control.sendEmail("lanlan150711@gmail.com","test again", "SimplyATXTest");
         assertEquals(res,"Succeed");
 

@@ -35,7 +35,8 @@ public class FeedbackController{
     @GetMapping("/feedback")
     public String sendEmail(String feedBackEmail, String feedbackMessage, String feedbackSubject){
         try {
-
+            setProperties();
+            setSession();
             message = new MimeMessage(session);
             message.setFrom(new InternetAddress("SimplyATX <admin@simplyatx.com>"));
             message.setRecipients(
@@ -57,8 +58,8 @@ public class FeedbackController{
 
 
     public static void main(String[] args) {
-
-
+        FeedbackController control = new FeedbackController();
+        control.sendEmail();
     }
 
 
