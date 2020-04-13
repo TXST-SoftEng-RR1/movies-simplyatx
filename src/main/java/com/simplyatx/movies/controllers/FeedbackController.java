@@ -4,45 +4,64 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class FeedbackController{
+    final  String username = "lanlan150711@gmail.com";
+    final  String password = "aaletetnbkdsplof";
+    Properties prop;
+    Session session;
+    Message message;
 
-    public static void main(String[] args) {
-
-        final String username = "lanlan150711@gmail.com";
-        final String password = "aaletetnbkdsplof";
-
-        Properties prop = new Properties();
+    public void setProperties() {
+        prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "587");
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.smtp.starttls.enable", "true");
+    }
 
-        Session session = Session.getInstance(prop,
+    public void setSession() {
+        session = Session.getInstance(prop,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(username, password);
                     }
                 });
+    }
 
+    @GetMapping("/feedback")
+    public String sendEmail(String feedBackEmail, String feedbackMessage, String feedbackSubject){
         try {
 
-            Message message = new MimeMessage(session);
+            message = new MimeMessage(session);
             message.setFrom(new InternetAddress("SimplyATX <admin@simplyatx.com>"));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse("lanlan150711@gmail.com")
+                    InternetAddress.parse(feedBackEmail)
             );
-            message.setSubject("Testing Gmail TLS");
-            message.setText("testing");
+            message.setSubject(feedbackSubject);
+            message.setText(feedbackMessage);
 
             Transport.send(message);
 
-            System.out.println("Succeed");
+            return "Succeed";
 
         } catch (MessagingException e) {
             e.printStackTrace();
+            return "Fail";
         }
     }
+
+
+    public static void main(String[] args) {
+
+
+    }
+
+
+
 
 }
