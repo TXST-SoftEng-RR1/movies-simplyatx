@@ -21,6 +21,7 @@ COPY --from=builder /app/target/movies-*.jar /movies.jar
 # Service must listen to $PORT environment variable.
 # This default value facilitates local development.
 ENV PORT 8080
+ENV jasypt.encryptor.password
 
 # Run the web service on container startup.
-CMD ["java","-Djava.security.egd=file:/dev/./urandom","-Dserver.port=${PORT}","-jar","/movies.jar"]
+CMD ["java","-Djava.security.egd=file:/dev/./urandom","-Dserver.port=${PORT}","-Djasypt.encryptor.password=yVK6h1Sl2","-jar","/movies.jar"]
