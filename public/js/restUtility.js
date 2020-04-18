@@ -1,3 +1,14 @@
+function searchAfiFocused(origin, searchCriteria, type, sort) {
+    let jsonData = "";
+    $.get(origin + "/searchAfiFocused", {
+        "userInput": searchCriteria, "fieldtype": type, "sorttype": sort,
+    }).done(function (data) {
+        jsonData = JSON.parse(data);
+        console.log("Invoking /searchAfiFocused. Result: " + jsonData);
+    });
+    return jsonData;
+}
+
 function searchAfi(origin, searchCriteria) {
     let jsonData = "";
     $.get(origin + "/searchAfi", {
@@ -27,13 +38,11 @@ $(document).ready(function () {
         let searchCriteria = document.getElementById('searchInput').value;
         coverModal.modal({backdrop: 'static', keyboard: false}) ;
         let afiData = searchAfi(origin, searchCriteria);
-        let imdbData = searchImdb(origin, searchCriteria);
 
         if (afiData === "{\"Results\":[],\"Count\":0}") {
             console.warn("No AFI data available.");
         }
-
-
+		//Need to call a class that creates the list of results or a default 'no results' list
         coverModal.modal('toggle');
     });
 });
