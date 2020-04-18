@@ -11,21 +11,24 @@ function searchAfi(origin, searchCriteria) {
 
 function searchImdb(origin, searchCriteria) {
     let jsonData = "";
-    $.get(origin + "/searchImdb", {
+    $.get(origin + "/getDetailedImdbResults", {
         "userInput": searchCriteria,
     }).done(function (data) {
         jsonData = JSON.parse(data);
         console.log("Invoking /searchImdb. Result: " + jsonData);
+        console.log("Title: " + jsonData.results[0].name);
+
     });
 }
 
 $(document).ready(function () {
-    let origin = window.location.origin;
+    // let origin = window.location.origin;
+    let origin = "localhost:8080";
     let coverModal = document.getElementById('cover');
 
     document.getElementById('searchBtn').addEventListener('click', function () {
         let searchCriteria = document.getElementById('searchInput').value;
-        coverModal.modal({backdrop: 'static', keyboard: false}) ;
+        coverModal.modal('toggle') ;
         let afiData = searchAfi(origin, searchCriteria);
         let imdbData = searchImdb(origin, searchCriteria);
 
