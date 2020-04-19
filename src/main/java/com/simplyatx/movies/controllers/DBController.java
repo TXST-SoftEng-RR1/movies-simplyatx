@@ -45,7 +45,7 @@ public class DBController {
 	public DBController(){
 		try {
             // [START initialize]
-            FileInputStream serviceAccount = new FileInputStream("../../../../../../../movies-simplyatx-firebase-adminsdk-si1yn-122b0f8333.json");
+            FileInputStream serviceAccount = new FileInputStream("movies-simplyatx-firebase-adminsdk-si1yn-122b0f8333.json");
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     .setDatabaseUrl(DATABASE_URL)
@@ -75,6 +75,7 @@ public class DBController {
 		  public void onDataChange(DataSnapshot dataSnapshot) {
 			final String reviewId = dataSnapshot.getKey();
 			final Reviews reviews = dataSnapshot.getValue(Reviews.class);
+			
 		  }
 
 		  @Override
