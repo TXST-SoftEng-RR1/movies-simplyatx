@@ -3,11 +3,10 @@
 
 $(document).ready(function () {
     let origin = window.location.origin;
-
-    let userName = $("#feedbackName");
-    let userEmail = $("#feedbackEmail");
-    let subject = $("#feedbackSubject");
-    let message = $("#feedbackMessage");
+    let userName = document.getElementById("feedbackName");
+    let userEmail = document.getElementById("feedbackEmail");
+    let subject = document.getElementById("feedbackSubject");
+    let message = document.getElementById("feedbackMessage");
 
     $("#submitButton").on('click', function () {
         console.log("user name: " + userName.value);
@@ -15,23 +14,26 @@ $(document).ready(function () {
         console.log("subject: " + subject.value);
         console.log("message: " + message.value);
 
+    console.log("Finish console log");
         let response = "";
         // anonymous
-        if (userEmail === null) {
+        if (userEmail.value === "" ) {
+        console.log("in anonymous");
             $.get(origin + "/anonFeedback", {
-                "feedbackSubject": subject,
-                //TODO: add last variable; last line does not have a commma
+                "feedbackSubject": subject.value,
+                "feedbackMessage": message.value
             }).done(function (data) {
-                data = JSON.parse(response);
-                console.log("Response: " + data);
+                console.log("Response from sending anonymous feedback: " + data);
             });
-        } else {    // anonymous
-            $.get(origin + "/searchImdb", {
-                "feedbackName": userName,
-                //TODO: add 3 other variables; last line does not have a commma
+        } else {    // non-anonymous
+        console.log("in non-anonymous");
+            $.get(origin + "/feedback", {
+                "feedbackName": userName.value,
+                "feedbackEmail": userEmail.value,
+                "feedbackSubject": subject.value,
+                "feedbackMessage": message.value
             }).done(function (data) {
-                data = JSON.parse(data);
-                console.log("Invoking /searchImdb. Result: " + data);
+                console.log("Response from sending non-anonymous feedback: " + data);
             });
         }
 
