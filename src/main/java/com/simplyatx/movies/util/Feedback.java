@@ -57,7 +57,7 @@ public class Feedback implements FeedbackWorkflow {
      */
     @Override
     public String initAnonymousWorkflow(String feedbackMessage, String feedbackSubject) {
-        return sendEmailToAdmin("", "lanlan@simplyatx.com", feedbackMessage);
+        return sendEmailToAdmin("admin@simplyatx.com", feedbackSubject, feedbackMessage);
     }
 
     /**
