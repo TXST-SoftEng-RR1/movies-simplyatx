@@ -88,7 +88,7 @@ public class SearchController {
      */
     @GetMapping("/searchAfi")
     public String search(String userInput) throws IOException {
-        return search(userInput, "ALL", "sortByTitle");
+        return search(userInput, "ALL", "sortByRelevance");
     }
 
     /**
