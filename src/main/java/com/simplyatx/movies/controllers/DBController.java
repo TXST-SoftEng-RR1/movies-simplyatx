@@ -61,6 +61,12 @@ public class DBController {
         database = FirebaseDatabase.getInstance().getReference();
 	}
 
+	/**
+     *
+     * @param 
+     * @return String
+     * @throws
+     */
     @GetMapping("/Query")
 	String Query(){
 		// use ref to access database snapshot....
@@ -80,8 +86,14 @@ public class DBController {
 		});
 	}
 	
+	 /**
+     *
+     * @param keyName
+     * @return
+     * @throws
+     */
 	@GetMapping("/Update")
-	String Update(String keyName){
+	void Update(String keyName){
 		final DatabaseReference postRef = database.child(keyName);
 		// use ref to access database snapshot....
 		Map<String, Object> updates = new HashMap<>();
