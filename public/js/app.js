@@ -142,5 +142,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     document.getElementById('signOutBtn').addEventListener('click', logout);
-
+    $('[data-toggle="tooltip"]').tooltip(); // initialize all tooltips
 });

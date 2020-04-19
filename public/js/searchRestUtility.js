@@ -41,8 +41,9 @@ function getTitleElement(imdbResult) {
     let releaseDate = imdbResult.datePublished;
     let description = imdbResult.description;
     let poster = imdbResult.image;
+    let trailer = imdbResult.trailer.embedUrl;
 
-    let titleObj = new show(id, title, url, releaseDate, description, poster);
+    let titleObj = new show(id, title, url, releaseDate, description, poster, trailer);
     return titleObj.constructEntry();
 }
 
@@ -54,6 +55,6 @@ $(document).ready(function () {
         let searchCriteria = document.getElementById('searchInput').value;
         loadingCover.modal({backdrop: 'static', keyboard: false});
         searchAfi(origin, searchCriteria);
-        searchImdb(origin, searchCriteria);
+        searchImdb(origin, searchCriteria).then(r => console.log(r));
     });
 });
