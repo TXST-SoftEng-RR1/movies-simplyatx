@@ -45,7 +45,7 @@ public class DBController {
 	public DBController(){
 		try {
             // [START initialize]
-            FileInputStream serviceAccount = new FileInputStream("path/to/serviceAccountKey.json");
+            FileInputStream serviceAccount = new FileInputStream("../../../../../../../movies-simplyatx-firebase-adminsdk-si1yn-122b0f8333.json");
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     .setDatabaseUrl(DATABASE_URL)
@@ -73,14 +73,12 @@ public class DBController {
 		database.addListenerForSingleValueEvent(new ValueEventListener() {
 		  @Override
 		  public void onDataChange(DataSnapshot dataSnapshot) {
-			final String postId = dataSnapshot.getKey();
-			final Post post = dataSnapshot.getValue(Post.class);
-				
+			final String reviewId = dataSnapshot.getKey();
+			final Reviews reviews = dataSnapshot.getValue(Reviews.class);
 		  }
 
 		  @Override
 		  public void onCancelled(DatabaseError databaseError) {
-			System.out.println("Unable to attach listener to stars for post: " + postRef.getKey());
 			System.out.println("Error: " + databaseError.getMessage());
 		  }
 		});
@@ -93,12 +91,11 @@ public class DBController {
      * @throws
      */
 	@GetMapping("/Update")
-	void Update(String keyName){
-		final DatabaseReference postRef = database.child(keyName);
+	void Update(String keyName, String value){
+		final DatabaseReference update = database.child(keyName);
 		// use ref to access database snapshot....
 		Map<String, Object> updates = new HashMap<>();
-		updates.put(keyName, "<new-count>");
-
+		updates.put(keyName, value);
 		update.updateChildrenAsync(updates);
 	}
 }
