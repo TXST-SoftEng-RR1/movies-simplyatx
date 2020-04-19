@@ -13,13 +13,11 @@ const firebaseConfig = {
   measurementId: "G-FHBLZJVSQ2"
 };
 var Database = null;
-var UserID = null;
   
 function connectDatabase(){
   firebase.initializeApp(firebaseConfig);
   // Get a reference to the database service
   Database = firebase.database();
-  UserID = firebase.auth().currentUser.uid;
 }
 
 function queryDatabase(uid, table, key=null){
