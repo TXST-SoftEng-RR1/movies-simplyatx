@@ -1,5 +1,6 @@
 
-  // Set the configuration for your app
+  // Go here for a complete refernece specification for this implementation: 
+  // https://firebase.google.com/docs/reference/js/firebase.database.Reference.html
   
 const firebaseConfig = {
   apiKey: "AIzaSyDtt3Yuz864i09jw5bztgfB_1Q4OQ54ZM0",
