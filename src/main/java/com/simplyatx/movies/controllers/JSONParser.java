@@ -45,8 +45,9 @@ class JSONParser {
         int idi = json.indexOf("\"id\":");
         if (idi == -1)
             return null;
-        String id_parse = json.substring(idi + 6);
-        return id_parse.substring(0, id_parse.indexOf("\",\""));
+//        String id_parse = json.substring(idi + 6);
+//        return id_parse.substring(0, id_parse.indexOf("\",\""));
+        return json;
     }
 
     /**

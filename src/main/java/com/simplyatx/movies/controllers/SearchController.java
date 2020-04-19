@@ -16,15 +16,14 @@
 
 package com.simplyatx.movies.controllers;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
+import com.google.gson.Gson;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -89,7 +88,7 @@ public class SearchController {
      */
     @GetMapping("/searchAfi")
     public String search(String userInput) throws IOException {
-        return search(userInput, "ALL", "sortByTitle");
+        return search(userInput, "ALL", "sortByRelevance");
     }
 
     /**
@@ -114,21 +113,47 @@ public class SearchController {
      * @return
      * @throws IOException
      */
-    @GetMapping("/searchImdb")
+    @GetMapping("/getBasicImdbResutls")
     public String retrieve(String userInput) throws IOException {
         char firstChar = userInput.toLowerCase(Locale.ENGLISH).charAt(0);
         String packet = getStringFromUrl(String.format(imdbIdUrl, firstChar, URLEncoder.encode(userInput, "UTF-8")));
+
+        int idi = packet.indexOf("\"id\":");
+        if (idi == -1)
+            return "No results";
+        else
+            return packet;
+    }
+
+    @GetMapping("/getDetailedImdbResults")
+    public String getDetailedImdbResults(String userInput) throws IOException {
+        String packet = retrieve(userInput);
+
+        if (packet.equals("No results"))
+            return "No results";
+
+        int start = packet.indexOf("(");
+        int end = packet.indexOf(")");
+        packet = packet.substring(start + 1, end);
+
+        JSONObject obj = new JSONObject(packet);
+        JSONArray arr = obj.getJSONArray("d");
         JSONParser jp = new JSONParser();
-        String movieId = jp.parseImdbIdResult(packet);
+        JSONBuilder jb = null;
 
-        // parseImdbIdResult returns null if 'id:' does not exist in the JSON response
-        // so, do not error out but instead indicate no results are available for search parameter
-        if (movieId == null) {
-            return "null";
+        StringBuilder aggregatedResults = new StringBuilder(1000);
+        aggregatedResults.append("{ \"results\": [");
+
+        for (int i = 0; i < arr.length(); i++) {
+            String id = arr.getJSONObject(i).getString("id");
+            System.out.println("id: " + id);
+            String html_string = getStringFromUrl(String.format(imdbUrl, id));
+            jb = new JSONBuilder(jp.parseImdbDisplayJson(html_string));
+            aggregatedResults.append(jb.make());
+            if (i != arr.length() - 1) aggregatedResults.append(",");
         }
+        aggregatedResults.append("]}");
 
-        String html_string = getStringFromUrl(String.format(imdbUrl, movieId));
-        JSONBuilder jb = new JSONBuilder(jp.parseImdbDisplayJson(html_string));
-        return jb.make();
+        return aggregatedResults.toString();
     }
 }

@@ -97,12 +97,11 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.5.12</version>
 		</dependency>
-
-		<!--implementation 'com.google.firebase:firebase-admin:6.12.2' -->
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
 		<dependency>
-		  <groupId>com.google.firebase</groupId>
-		  <artifactId>firebase-admin</artifactId>
-		  <version>6.12.2</version>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20190722</version>
 		</dependency>
 	</dependencies>
 
