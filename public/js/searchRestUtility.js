@@ -1,3 +1,14 @@
+function searchAfiFocused(origin, searchCriteria, type, sort) {
+    let jsonData = "";
+    $.get(origin + "/searchAfiFocused", {
+        "userInput": searchCriteria, "fieldtype": type, "sorttype": sort,
+    }).done(function (data) {
+        jsonData = JSON.parse(data);
+        console.log("Invoking /searchAfiFocused. Result: " + jsonData);
+    });
+    return jsonData;
+}
+
 function searchAfi(origin, searchCriteria) {
     let jsonData = "";
     $.get(origin + "/searchAfi", {
