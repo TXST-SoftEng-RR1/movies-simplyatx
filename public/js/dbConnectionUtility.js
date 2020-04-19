@@ -22,22 +22,15 @@ function connectDatabase(){
 }
 
 function queryDatabase(uid, table, key=null){
-	var snapshotfunc = null
+	var dataobject =  Database.ref(table).once('value');
 	if(key){
-		snapshotfunc = function(snapshot) {
-			  var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-			  // ...
-		};
+		return dataobject[key];
 	}
 	else{
-		snapshotfunc = function(snapshot) {
-			  var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-			  // ...
-		}
+		return dataobject;
 	}
-	return userRef.once(table).then(snapshotfunc);
 }
 
 function updateDatabase(table, key, value) {
-	Database.ref().child(table).set({key: value)});
+	Database.ref(table).set({key: value)});
 }
