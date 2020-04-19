@@ -35,6 +35,8 @@ public class FeedbackController{
 
     @GetMapping("/anonFeedback")
     public String anonymousWorkflow(String feedbackSubject, String feedbackMessage) {
+        feedback = new Feedback();
+        feedback.setApplicationContext(applicationContext);
         return feedback.initAnonymousWorkflow(feedbackSubject, feedbackMessage);
     }
 }
