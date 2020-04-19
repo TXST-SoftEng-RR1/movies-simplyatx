@@ -85,6 +85,8 @@ http://localhost:8080/swagger-ui.html
     - Select [6] us-central1 for the region
     - Press `Enter` to select the default for service name (movies)
 
+### Jasypt Encryption
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 
