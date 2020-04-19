@@ -98,6 +98,12 @@
 			<version>4.5.12</version>
 		</dependency>
 
+		<!--implementation 'com.google.firebase:firebase-admin:6.12.2' -->
+		<dependency>
+		  <groupId>com.google.firebase</groupId>
+		  <artifactId>firebase-admin</artifactId>
+		  <version>6.12.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
