@@ -112,4 +112,33 @@ body {
   float: left;
 }
 
+/*
+  Idea from https://scriptgenerator.net/html-css-custom-scrollbar-code-generator/
+ */
+.scrollbar::-webkit-scrollbar {
+  width: 14px;
+  background-color: #f4e7e7;
+}
+.scrollbar::-webkit-scrollbar:horizontal {
+  height: 14px;
+}
+.scrollbar::-webkit-scrollbar-track {
+  border: 1px #787878 solid;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 6px #c8c8c8 inset;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #35aec3;
+  border: 1px solid #000000;
+  border-radius: 16px;
+}
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #58a1d3;
+  border: 1px solid #333333;
+}
+.scrollbar::-webkit-scrollbar-thumb:active {
+  background-color: #337996;
+  border: 1px solid #333333;
+}
+
 /*# sourceMappingURL=style.css.map */

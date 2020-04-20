@@ -31,39 +31,45 @@ function getSingleEmojiCountForTitle(titleId, emojiId) {
 * @param emojiId
 */
 function updateSingleEmojiCountForTitle(titleId, emojiId) {
-    // Try to create a record for a titleId (e.g., tt0241527), but only if not already there
-    let titleRef = firebase.database().ref('Reviews/' + titleId);
-    titleRef.transaction(function(currentData) {
-        if (currentData === null) {
-            return { e1: 0, e2: 0, e3: 0, e4: 0, e5: 0, e6: 0, e7: 0, e8: 0, e9: 0 };
-        }
-        else {
-            console.log('Title' + titleId + ' already exists. Updating emojiId only.');
-            return; // Abort the transaction.
-        }
-    }, function(error, committed, snapshot) {
-        if (error) {
-            console.error('Transaction failed abnormally!', error);
-        } else if (!committed) {
-            console.warn('We aborted create transaction. Title already exists.');
-        } else {
-            console.log(titleId + ' created with default 0 values for emojiIds.');
-        }
-    });
+    // check if user is authenticated
+    var user = firebase.auth().currentUser;
 
-    // Increment title's emoji count by 1.
-    var incrementEmojiCount = firebase.database().ref('Reviews/' + titleId + '/' + emojiId);
-    incrementEmojiCount.transaction(function(currentCount) {
-        // If Reviews/title/emoji has never been set, currentCount will be `null`.
-        return currentCount + 1;
-    }, function(error, committed, snapshot) {
-        if (error) {
-            console.error('Transaction failed abnormally!', error);
-        } else if (!committed) {
-            console.warn('We aborted create transaction.');
-        } else {
-            console.log(titleId + ' for emoji ' + emojiId + ' incremented +1!');
-        }
-        console.log(titleId + " data: ", snapshot.val());
-    });
+    if (user) {
+        // Try to create a record for a titleId (e.g., tt0241527), but only if not already there
+        let titleRef = firebase.database().ref('Reviews/' + titleId);
+        titleRef.transaction(function (currentData) {
+            if (currentData === null) {
+                return {e1: 0, e2: 0, e3: 0, e4: 0, e5: 0, e6: 0, e7: 0, e8: 0, e9: 0};
+            } else {
+                console.log('Title' + titleId + ' already exists. Updating emojiId only.');
+                return; // Abort the transaction.
+            }
+        }, function (error, committed, snapshot) {
+            if (error) {
+                console.error('Transaction failed abnormally!', error);
+            } else if (!committed) {
+                console.warn('We aborted create transaction. Title already exists.');
+            } else {
+                console.log(titleId + ' created with default 0 values for emojiIds.');
+            }
+        });
+
+        // Increment title's emoji count by 1.
+        var incrementEmojiCount = firebase.database().ref('Reviews/' + titleId + '/' + emojiId);
+        incrementEmojiCount.transaction(function (currentCount) {
+            // If Reviews/title/emoji has never been set, currentCount will be `null`.
+            return currentCount + 1;
+        }, function (error, committed, snapshot) {
+            if (error) {
+                console.error('Transaction failed abnormally!', error);
+            } else if (!committed) {
+                console.warn('We aborted create transaction.');
+            } else {
+                console.log(titleId + ' for emoji ' + emojiId + ' incremented +1!');
+            }
+            console.log(titleId + " data: ", snapshot.val());
+        });
+    } else {
+        $("#logInModal").modal('toggle');
+    }
 }
