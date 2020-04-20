@@ -60,6 +60,7 @@ function searchImdb(origin, searchCriteria) {
         for (let i = 0; i < jsonData.results.length; i++) {
             titleHtmlElement = getTitleElement(jsonData.results[i]);
             movieReelImg.addClass("hidden");
+            $("#searchPromptId").addClass("hidden");
             searchResultsDiv.append(titleHtmlElement);
         }
         $("#cover").modal('hide');

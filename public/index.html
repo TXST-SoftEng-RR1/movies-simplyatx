@@ -83,13 +83,14 @@
     <div class="d-md-flex h-md-80 align-items-center">
       <div class="col-md-7 p-0 bg-indigo h-md-100">
         <div class="text-white d-md-flex align-items-center h-100 p-3 text-center justify-content-center">
-          <div class=" pb-5">
+          <div class=" pb-3">
             <img id="movieReelImg" src="/img/reel.png" alt="Image of a movie reel">
-            <h1 class="mb-0 mt-3 display-4">What are you looking for?</h1>
+            <h1 id="searchPromptId" class="mb-0 mt-3 display-4">What are you looking for?</h1>
             <br/>
             <div class="input-group">
               <label for="searchInput"></label>
-              <input class="form-control py-2 rounded-pill mr-1 pr-5" type="search" value="" id="searchInput" placeholder="Enter a movie or show title">
+              <input class="form-control py-2 rounded-pill mr-1 pr-5" type="search" value="" id="searchInput"
+                     placeholder="Enter a movie or show title" style="margin-top: 10px;">
               <span class="input-group-append">
                   <button class="btn rounded-pill border-0 ml-n5" id="searchBtn" type="button">
                       <i class="fa fa-search"></i>
@@ -97,7 +98,7 @@
               </span>
               <hr/>
               <br/><br/>
-              <div id="searchResults" class="scrollbar" style="overflow-y: auto; max-height: 600px; color: black">
+              <div id="searchResults" class="scrollbar" style="overflow-y: auto; max-height: 550px; color: black">
               </div>
             </div>
             </a>
