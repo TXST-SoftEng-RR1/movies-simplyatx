@@ -71,9 +71,10 @@ async function searchImdb(origin, searchCriteria) {
  * width, height}|{top: *, left: number, width, height}|{top: *, left: number, width, height}|*}
  */
 function getTitleElement(imdbResult) {
-    let id = imdbResult.id ? imdbResult.id : "0";
+
     let title = imdbResult.name ? imdbResult.name : "No title available";
     let url = imdbResult.url ? "https://www.imdb.com" + imdbResult.url : "#";
+    let id = imdbResult.url ? imdbResult.url.substring(7, 16) : "0";
     let releaseDate = imdbResult.datePublished ? imdbResult.datePublished : "N/A";
     let description = imdbResult.description ? imdbResult.description : "No description is available for this title.";
     let poster = imdbResult.image ? imdbResult.image : "";

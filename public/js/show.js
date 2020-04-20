@@ -5,14 +5,14 @@
  */
 class show {
 
-    constructor(id, title, url, year, description, posterUrl, trailer) {
-        this.id = id;
-        this.title = title;
-        this.url = url;
-        this.year = year;
-        this.description = description;
-        this.posterUrl = posterUrl;
-        this.trailer = trailer;
+    constructor(_id, _title, _url, _year, _description, _posterUrl, _trailer) {
+        this.titleId = _id;
+        this.title = _title;
+        this.url = _url;
+        this.year = _year;
+        this.description = _description;
+        this.posterUrl = _posterUrl;
+        this.trailer = _trailer;
     }
 
     constructEntry() {
@@ -32,15 +32,33 @@ class show {
         result +=         "<a href='https://imdb.com" + this.trailer + "' class='btn btn-warning' target='_blank'>Trailer</a>";
         result +=         "<br/>";
         result +=         "<div>";
-        result +=             "<img class='nav-item' src='/img/emojis/lol.png'>";
-        result +=             "<img class='nav-item' src='/img/emojis/grin.png'>";
-        result +=             "<img class='nav-item' src='/img/emojis/smile.png'>";
-        result +=             "<img class='nav-item' src='/img/emojis/meh.png'>";
-        result +=             "<img class='nav-item' src='/img/emojis/snore.png'>";
-        result +=             "<img class='nav-item' src='/img/emojis/expressionless.png'>";
-        result +=             "<img class='nav-item' src='/img/emojis/hmm.png'>";
-        result +=             "<img class='nav-item' src='/img/emojis/cry.png'>";
-        result +=             "<img class='nav-item' src='/img/emojis/angry.png'>";
+        result +=             "<button id='" + this.titleId + "-e1-btn' type=\"button\" class=\"btn btn-light\" onclick=\"updateSingleEmojiCountForTitle(this.titleId, 'e1')\">";
+        result +=                 "<img class='nav-item' src='/img/emojis/lol.png'>'<span id='" + this.titleId + "-e1-lolBadge' class='badge badge-light'>0</span>'";
+        result +=             "</button> &nbsp;";
+        result +=             "<button id='" + this.titleId + "-e2-btn' type=\"button\" class=\"btn btn-light\" onclick=\"updateSingleEmojiCountForTitle(this.titleId, 'e2')\">";
+        result +=                 "<img class='nav-item' src='/img/emojis/grin.png'>'<span id='" + this.titleId + "-e2-grinBadge' class='badge badge-light'>0</span>'";
+        result +=             "</button>  &nbsp;";
+        result +=             "<button id='" + this.titleId + "-e3-btn' type=\"button\" class=\"btn btn-light\" onclick=\"updateSingleEmojiCountForTitle(this.titleId, 'e3')\">";
+        result +=                 "<img class='nav-item' src='/img/emojis/smile.png'>'<span id='" + this.titleId + "-e3-smileBadge' class='badge badge-light'>0</span>'";
+        result +=             "</button>  &nbsp;";
+        result +=             "<button id='" + this.titleId + "-e4-btn' type=\"button\" class=\"btn btn-light\" onclick=\"updateSingleEmojiCountForTitle(this.titleId, 'e4')\">";
+        result +=                 "<img class='nav-item' src='/img/emojis/meh.png'>'<span id='" + this.titleId + "-e4-mehBadge' class='badge badge-light'>0</span>'";
+        result +=             "</button>  &nbsp;";
+        result +=             "<button id='" + this.titleId + "-e5-btn' type=\"button\" class=\"btn btn-light\" onclick=\"updateSingleEmojiCountForTitle(this.titleId, 'e5')\">";
+        result +=                 "<img class='nav-item' src='/img/emojis/snore.png'>'<span id='" + this.titleId + "-e5-snoreBadge' class='badge badge-light'>0</span>'";
+        result +=             "</button>  &nbsp;";
+        result +=             "<button id='" + this.titleId + "-e6-btn' type=\"button\" class=\"btn btn-light\" onclick=\"updateSingleEmojiCountForTitle(this.titleId, 'e6')\">";
+        result +=                 "<img class='nav-item' src='/img/emojis/expressionless.png'>'<span id='" + this.titleId + "-e6-expressionlessBadge' class='badge badge-light'>0</span>'";
+        result +=             "</button>  &nbsp;";
+        result +=             "<button id='" + this.titleId + "-e7-btn' type=\"button\" class=\"btn btn-light\" onclick=\"updateSingleEmojiCountForTitle(this.titleId, 'e7')\">";
+        result +=                 "<img class='nav-item' src='/img/emojis/hmm.png'>'<span id='" + this.titleId + "-e7-hmmBadge' class='badge badge-light'>0</span>'";
+        result +=             "</button>  &nbsp;";
+        result +=             "<button id='" + this.titleId + "-e8-btn' type=\"button\" class=\"btn btn-light\" onclick=\"updateSingleEmojiCountForTitle(this.titleId, 'e8')\">";
+        result +=                 "<img class='nav-item' src='/img/emojis/cry.png'>'<span id='" + this.titleId + "-e8-cryBadge' class='badge badge-light'>0</span>'";
+        result +=             "</button>  &nbsp;";
+        result +=             "<button id='" + this.titleId + "-e9-btn' type=\"button\" class=\"btn btn-light\" onclick=\"updateSingleEmojiCountForTitle(this.titleId, 'e9')\">";
+        result +=                 "<img class='nav-item' src='/img/emojis/angry.png'>'<span id='" + this.titleId + "-e9-angryBadge' class='badge badge-light'>0</span>'";
+        result +=             "</button>  &nbsp;";
         result +=         "</div>";
         result +=     "</div>";
         result += "</div>";
