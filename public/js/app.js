@@ -25,13 +25,18 @@ document.addEventListener('DOMContentLoaded', function() {
         firebase.initializeApp(firebaseConfig);
     }
 
+    let db;
 
     try {
         let app = firebase.app();
+        db = firebase.database();
+
+        firebase.database.enableLogging(function(message) {
+            console.log("[FIREBASE-DB]", message);
+        });
+
         let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
         document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-
-
 
         // Initialize the FirebaseUI Widget using Firebase.
         var ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -143,4 +148,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('signOutBtn').addEventListener('click', logout);
     $('[data-toggle="tooltip"]').tooltip(); // initialize all tooltips
+
+    return firebase.database().ref('/Reviews/tt0241527').on('value', function(snapshot) {
+        console.log(snapshot.val());
+    });
 });
