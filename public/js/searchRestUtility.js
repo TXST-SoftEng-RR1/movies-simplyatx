@@ -1,3 +1,11 @@
+/**
+ *
+ * @param origin
+ * @param searchCriteria
+ * @param type
+ * @param sort
+ * @returns {string}
+ */
 function searchAfiFocused(origin, searchCriteria, type, sort) {
     let jsonData = "";
     $.get(origin + "/searchAfiFocused", {
@@ -9,6 +17,12 @@ function searchAfiFocused(origin, searchCriteria, type, sort) {
     return jsonData;
 }
 
+/**
+ *
+ * @param origin
+ * @param searchCriteria
+ * @returns {string}
+ */
 function searchAfi(origin, searchCriteria) {
     let jsonData = "";
     $.get(origin + "/searchAfi", {
@@ -23,6 +37,12 @@ function searchAfi(origin, searchCriteria) {
     return jsonData;
 }
 
+/**
+ *
+ * @param origin
+ * @param searchCriteria
+ * @returns {Promise<void>}
+ */
 async function searchImdb(origin, searchCriteria) {
 
     let jsonData = "";
@@ -44,15 +64,20 @@ async function searchImdb(origin, searchCriteria) {
     });
 }
 
-//id, title, url, year, description, posterUrl
+/**
+ * id, title, url, year, description, posterUrl
+ * @param imdbResult
+ * @returns {{top: *, left: *, width, height}|{width, height}|{top: *, left: *, width, height}|{top: *, left: number,
+ * width, height}|{top: *, left: number, width, height}|{top: *, left: number, width, height}|*}
+ */
 function getTitleElement(imdbResult) {
-    let id = imdbResult.id;
-    let title = imdbResult.name;
-    let url = "https://www.imdb.com" + imdbResult.url;
-    let releaseDate = imdbResult.datePublished;
-    let description = imdbResult.description;
-    let poster = imdbResult.image;
-    let trailer = imdbResult.trailer.embedUrl;
+    let id = imdbResult.id ? imdbResult.id : "0";
+    let title = imdbResult.name ? imdbResult.name : "No title available";
+    let url = imdbResult.url ? "https://www.imdb.com" + imdbResult.url : "#";
+    let releaseDate = imdbResult.datePublished ? imdbResult.datePublished : "N/A";
+    let description = imdbResult.description ? imdbResult.description : "No description is available for this title.";
+    let poster = imdbResult.image ? imdbResult.image : "";
+    let trailer = imdbResult.trailer.embedUrl ? imdbResult.trailer.embedUrl : "#";
 
     let titleObj = new show(id, title, url, releaseDate, description, poster, trailer);
     return titleObj.constructEntry();
