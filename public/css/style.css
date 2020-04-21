@@ -117,7 +117,7 @@ body {
  */
 .scrollbar::-webkit-scrollbar {
   width: 14px;
-  background-color: #f4e7e7;
+  background-color: #d42c08;
 }
 .scrollbar::-webkit-scrollbar:horizontal {
   height: 14px;

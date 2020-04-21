@@ -22,7 +22,11 @@ class show {
         result += "<br/>";
         result += "<div class='card flex-row flex-wrap' style=\"margin-right: 10px;\">";
         result +=     "<div class='card-header border-0'>";
-        result +=         "<img height='150' width='100' class='floatLeft' src='" + this.posterUrl + "' alt='Movie poster'>";
+        if (this.posterUrl === "/img/svg/ninja.svg") {
+            result +=     "<img height='150' width='100' ata-toggle=\"tooltip\" data-placement=\"left\" title=\"We couldn't find a poster, it must've sneaked passed us like a ninja!\" class='floatLeft' src='" + this.posterUrl + "' alt='Movie poster'>";
+        } else {
+            result +=     "<img height='150' width='100' class='floatLeft' src='" + this.posterUrl + "' alt='Movie poster'>";
+        }
         result +=         "<div class='card-block px-2' data-toggle=\"tooltip\" data-placement=\"left\" title='Genre(s): "+ this.genre +"'>";
         result +=             "<h5 class='card-title'>" + this.title + " </h5>";
         result +=             "<em>Released: " + this.year + "</em>";
