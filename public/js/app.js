@@ -93,6 +93,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     uid = user.uid;
                     phoneNumber = user.phoneNumber;
                     providerData = user.providerData;
+
+                    console.log("uid: " + uid);
+
                     user.getIdToken().then(function(accessToken) {
                         document.getElementById('userLogInNavItem').classList.add("hidden");
                         document.getElementById('userAccountNavItem').classList.remove("hidden");
@@ -100,13 +103,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         document.getElementById('userNameForNav').innerHTML = displayName;
 
                         if (photoURL !== null) {
-                            document.getElementById('myAcctImgPreview').classList.remove("far", "fa-user");
-                            document.getElementById('myAcctImgPreview').height = 30;
-                            document.getElementById('myAcctImgPreview').width = 30;
-                            document.getElementById('myAcctImgPreview').src = photoURL;
-                            document.getElementById('userProfilePic').src = photoURL;
-                            document.getElementById('userProfilePic').height = 150;
-                            document.getElementById('userProfilePic').width = 150;
+                            let acctImgPreview = document.getElementById('myAcctImgPreview');
+                            let userProfilePic = document.getElementById('userProfilePic');
+                            acctImgPreview.classList.remove("far", "fa-user");
+                            acctImgPreview.height = 30;
+                            acctImgPreview.width = 30;
+                            acctImgPreview.src = photoURL;
+                            userProfilePic.src = photoURL;
+                            userProfilePic.height = 150;
+                            userProfilePic.width = 150;
                         }
 
                         document.getElementById('userEmail').placeholder = email;

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="description" content="Austin, TX movies made simple!">
     <meta name="keywords" content="ATX,Austin,movies,special showings,Texas">
@@ -28,286 +28,345 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <!-- CDN FirebaseUI drop-in for authentication -->
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"/>
     <!-- Place your kit's code here FontAwesome -->
     <script src="https://kit.fontawesome.com/026b1d2076.js" crossorigin="anonymous"></script>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-  </head>
-  <body>
+</head>
+<body>
 
 
-    <!-- NAVBAR -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">
+<!-- NAVBAR -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
         <img src="/img/ico/favicon-32x32_inv.png" width="40" height="40" class="d-inline-block align-top" alt="">
         <img src="/img/simplyatx_logo_cropped.png" width="125" height="40">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#aboutModal">About this site</a>
-          </li>
-          <!-- for new or existing users -->
-          <li id="userLogInNavItem" class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#logInModal">Sign Up / Log-in</a>
-          </li>
-          <!-- for feedback to the admin -->
-          <li id="feedback" class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#feedbackModal">Contact Us</a>
-          </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#aboutModal">About this site</a>
+            </li>
+            <!-- for new or existing users -->
+            <li id="userLogInNavItem" class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#logInModal">Sign Up / Log-in</a>
+            </li>
+            <!-- for feedback to the admin -->
+            <li id="feedback" class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#feedbackModal">Contact Us</a>
+            </li>
 
-          <!-- will replace the sign up and log in buttons once user logs in -->
-          <li id="userAccountNavItem"  class="nav-item dropdown hidden" style="padding-left: 5px;">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img class="far fa-user" id="myAcctImgPreview" src="" alt="Small user profile picture for the nav menu.">
-              My Profile
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <div> &nbsp;Signed in as: <i id="userNameForNav"></i></div>
-              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#accountModal">Your Profile</a>
-              <a class="dropdown-item" href="#">Your Preferences and Subscriptions</a>
-              <a class="dropdown-item" href="#" id="signOutBtn">Sign out</a>
-            </div>
-          </li>
+            <!-- will replace the sign up and log in buttons once user logs in -->
+            <li id="userAccountNavItem" class="nav-item dropdown hidden" style="padding-left: 5px;">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <img class="far fa-user" id="myAcctImgPreview" src=""
+                         alt="Small user profile picture for the nav menu.">
+                    My Profile
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <div> &nbsp;Signed in as: <i id="userNameForNav"></i></div>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#accountModal">Your Profile</a>
+                    <a class="dropdown-item" href="#">Your Preferences and Subscriptions</a>
+                    <a class="dropdown-item" href="#" id="signOutBtn">Sign out</a>
+                </div>
+            </li>
         </ul>
-      </div>
-    </nav>
-    <!-- END NAVBAR -->
+    </div>
+</nav>
+<!-- END NAVBAR -->
 
-    <!-- LEFT PANEL: SEARCH AND RESULTS -->
-    <div class="d-md-flex h-md-80 align-items-center">
-      <div class="col-md-7 p-0 bg-indigo h-md-100">
+<!-- LEFT PANEL: SEARCH AND RESULTS -->
+<div class="d-md-flex h-md-80 align-items-center">
+    <div class="col-md-7 p-0 bg-indigo h-md-100">
         <div class="text-white d-md-flex align-items-center h-100 p-3 text-center justify-content-center">
-          <div class=" pb-3">
-            <img id="movieReelImg" src="/img/reel.png" alt="Image of a movie reel">
-            <h1 id="searchPromptId" class="mb-0 mt-3 display-4">What are you looking for?</h1>
-            <br/>
-            <div class="input-group">
-              <label for="searchInput"></label>
-              <input class="form-control py-2 rounded-pill mr-1 pr-5" type="search" value="" id="searchInput"
-                     placeholder="Enter a movie or show title" style="margin-top: 10px;">
-              <span class="input-group-append">
+            <div class=" pb-3">
+                <img id="movieReelImg" src="/img/reel.png" alt="Image of a movie reel">
+                <h1 id="searchPromptId" class="mb-0 mt-3 display-4">What are you looking for?</h1>
+                <br/>
+                <div class="input-group">
+                    <label for="searchInput"></label>
+                    <input class="form-control py-2 rounded-pill mr-1 pr-5" type="search" value="" id="searchInput"
+                           placeholder="Enter a movie or show title" style="margin-top: 10px;">
+                    <span class="input-group-append">
                   <button class="btn rounded-pill border-0 ml-n5" id="searchBtn" type="button">
                       <i class="fa fa-search"></i>
                   </button>
               </span>
-              <hr/>
-              <br/><br/>
-              <div id="searchResults" class="scrollbar" style="overflow-y: auto; max-height: 550px; color: black">
-              </div>
+                    <hr/>
+                    <br/><br/>
+                    <div id="searchResults" class="scrollbar" style="overflow-y: auto; max-height: 550px; color: black">
+                    </div>
+                </div>
             </div>
-            </a>
-          </div>
         </div>
-      </div>
-      <!-- END LEFT PANEL: SEARCH AND RESULTS -->
+    </div>
+    <!-- END LEFT PANEL: SEARCH AND RESULTS -->
 
 
-      <!-- RIGHT PANEL: SHOWTIME INFO AND RESULT DETAILS -->
-      <div class="col-md-5 p-0 bg-white h-md-100">
+    <!-- RIGHT PANEL: SHOWTIME INFO AND RESULT DETAILS -->
+    <div class="col-md-5 p-0 bg-white h-md-100">
         <div class="d-md-flex align-items-center h-md-100 p-5 justify-content-center">
-          <form class="border rounded p-5">
-            <img src="/img/movie_ticket.png" height="100" width="250">
-            <p>
-              Display showtime information for search results when clicked.
-            </p>
-            <p>
-              Display specialty showings and offerings in Austin, TX otherwise.
-            </p>
-          </form>
+            <form class="border rounded p-5">
+                <img src="/img/movie_ticket.png" height="100" width="250">
+                <p>
+                    Display showtime information for search results when clicked.
+                </p>
+                <p>
+                    Display specialty showings and offerings in Austin, TX otherwise.
+                </p>
+            </form>
         </div>
-      </div>
     </div>
-    <!-- END RIGHT PANEL: SHOWTIME INFO AND RESULT DETAILS -->
+</div>
+<!-- END RIGHT PANEL: SHOWTIME INFO AND RESULT DETAILS -->
 
 
-
-    <!-- About Modal -->
-    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+<!-- About Modal -->
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="aboutModalLabel">About SimplyATX</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <h3>What we're about</h3>
-            <p>This website serves as a movie and TV show review aggregator, as well as allowing users to leave their own
-              unique feedback for a title using a basic and universal method - human emotion.</p>
+            <div class="modal-header">
+                <h5 class="modal-title" id="aboutModalLabel">About SimplyATX</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3>What we're about</h3>
+                <p>This website serves as a movie and TV show review aggregator, as well as allowing users to leave
+                    their own
+                    unique feedback for a title using a basic and universal method - human emotion.</p>
+                <br/>
+                <p>How did a movie make you feel? Was it 3/10 or 4/10? That's not very intuitive right?
+                    Seeing reviewers signal that a movie was a snoozefest and they'd rather watch paint dry, or was so
+                    inaccurate it
+                    made them so angry (grrr!) - that might be a tad bit more relatable. That's where we come in with
+                    our slightly
+                    cheesy but very useful "Emoji Ratings (TM)" system.</p>
+                <hr/>
+                <h3>For developers</h3>
+                <p>If you find yourself in need of an API for movie and show related information, swing on over to our
+                    <a href="/swagger-ui.html">Swagger
+                        API Documentation</a>!
+                    You'll find some useful calls. And if you have questions, don't forget to reach out to us on our
+                    <a href="/feedback">feedback form</a>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END About Modal -->
+
+
+<!-- Sign Up / Log In Modal -->
+<div class="modal fade" id="logInModal" tabindex="-1" role="dialog" aria-labelledby="logInModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logInModalLabel">New or Existing User Log-In</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                If you already have an account, use your existing credentials.
+                If you are a new user, a new account will be created for you.
+                <div>
+                    <!-- The surrounding HTML is left untouched by FirebaseUI.
+                                 Your app may use that space for branding, controls and other customizations.-->
+                    <div id="firebaseui-auth-container"></div>
+                    <div id="loader">Loading...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Sign Up / Log In Modal -->
+
+<!-- Feedback Modal -->
+<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="feedbackModalLabel">Contact Us</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-name">
+                    <label data-error="wrong" data-success="right" for="feedbackName"><i
+                            class="fas fa-user prefix grey-text"></i> Your name</label>
+                    <input type="text" id="feedbackName" class="form-control validate">
+                </div>
+                <div class="modal-email">
+                    <label data-error="wrong" data-success="right" for="feedbackEmail"><i
+                            class="fas fa-envelope prefix grey-text"></i> Your email</label>
+                    <input type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" id="feedbackEmail"
+                           class="form-control validate">
+                </div>
+                <div class="modal-subject">
+                    <label data-error="wrong" data-success="right" for="feedbackSubject"><i
+                            class="fas fa-tag prefix grey-text"></i> Subject</label>
+                    <input type="text" id="feedbackSubject" class="form-control validate">
+                </div>
+                <div class="md-message">
+                    <label data-error="wrong" data-success="right" for="feedbackMessage"><i
+                            class="fas fa-pencil prefix grey-text"></i> Your message</label>
+                    <textarea type="text" id="feedbackMessage" class="form-control validate" rows="4"></textarea>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center row">
+                <div class="col-3">
+                    <button id="submitButton" class="btn btn-info">Send<i class="fas fa-paper-plane-o ml-1"></i></button>
+                </div>
+                <div class="col-5">
+                    <div id="feedbackSpinner" class="clearfix hidden">
+                        <div class="spinner-border float-right" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                    <div id="feedbackSuccessNotice" class="hidden">
+                        <img src="/img/green-check-mark.png" height="35" width="35" alt="Green check mark." />
+                        Email sent.
+                    </div>
+                </div>
+            </div>
             <br/>
-            <p>How did a movie make you feel? Was it 3/10 or 4/10? That's not very intuitive right?
-            Seeing reviewers signal that a movie was a snoozefest and they'd rather watch paint dry, or was so inaccurate it
-            made them so angry (grrr!) - that might be a tad bit more relatable. That's where we come in with our slightly
-              cheesy but very useful "Emoji Ratings (TM)" system.</p>
-            <hr/>
-            <h3>For developers</h3>
-            <p>If you find yourself in need of an API for movie and show related information, swing on over to our <a href="/swagger-ui.html">Swagger
-            API Documentation</a>!
-            You'll find some useful calls. And if you have questions, don't forget to reach out to us on our
-              <a href="/feedback">feedback form</a>.</p>
-          </div>
         </div>
-      </div>
     </div>
-    <!-- END About Modal -->
+</div>
 
+<!-- END About Feedback -->
 
-    <!-- Sign Up / Log In Modal -->
-    <div class="modal fade" id="logInModal" tabindex="-1" role="dialog" aria-labelledby="logInModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+<!-- Account Modal -->
+<div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="accountModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="logInModalLabel">New or Existing User Log-In</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            If you already have an account, use your existing credentials.
-            If you are a new user, a new account will be created for you.
-            <div>
-              <!-- The surrounding HTML is left untouched by FirebaseUI.
-                           Your app may use that space for branding, controls and other customizations.-->
-              <div id="firebaseui-auth-container"></div>
-              <div id="loader">Loading...</div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="accountModalLabel">Your Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- END Sign Up / Log In Modal -->
-
-    <!-- Feedback Modal -->
-    <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="feedbackModalLabel">Contact Us</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="modal-name">
-              <label data-error="wrong" data-success="right" for="feedbackName"><i class="fas fa-user prefix grey-text"></i> Your name</label>
-              <input type="text" id="feedbackName" class="form-control validate">
-            </div>
-            <div class="modal-email">
-              <label data-error="wrong" data-success="right" for="feedbackEmail"><i class="fas fa-envelope prefix grey-text"></i> Your email</label>
-              <input type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" id="feedbackEmail" class="form-control validate">
-            </div>
-            <div class="modal-subject">
-              <label data-error="wrong" data-success="right" for="feedbackSubject"><i class="fas fa-tag prefix grey-text"></i> Subject</label>
-              <input type="text" id="feedbackSubject" class="form-control validate">
-            </div>
-            <div class="md-message">
-              <label data-error="wrong" data-success="right" for="feedbackMessage"><i class="fas fa-pencil prefix grey-text"></i> Your message</label>
-              <textarea type="text" id="feedbackMessage" class="form-control validate" rows="4"></textarea>
-            </div>
-          </div>
-          <div class="modal-submitButton d-flex justify-content-center">
-            <button id="submitButton" class="btn btn-info">Send<i class="fas fa-paper-plane-o ml-1"></i></button>
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- END About Feedback -->
-
-    <!-- Account Modal -->
-    <div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="accountModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="accountModalLabel">Your Profile</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-              <div class="media">
-                <div style="filter: sepia(50%);">
-                <img id="userProfilePic" class="align-self-start mr-3" src="" alt="User profile picture." style="border-radius: 8px; filter: drop-shadow(8px 8px 10px #955c28);">
-                </div>
-                <div class="media-body">
-                  <h5 id="userName" class="mt-0">Top-aligned media</h5>
-                  <hr/>
-                  <form>
-                    <div class="form-group row">
-                      <label for="userEmail" class="col-sm-2 col-form-label">Email</label>
-                      <div class="col-sm-9">
-                        <input type="text" readonly class="form-control-plaintext" id="userEmail" >
-                      </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="media">
+                        <div style="filter: sepia(50%);">
+                            <img id="userProfilePic" class="align-self-start mr-3" src="" alt="User profile picture."
+                                 style="border-radius: 8px; filter: drop-shadow(8px 8px 10px #955c28);">
+                        </div>
+                        <div class="media-body">
+                            <h5 id="userName" class="mt-0">Top-aligned media</h5>
+                            <hr/>
+                            <form>
+                                <div class="form-group row">
+                                    <label for="userEmail" class="col-sm-2 col-form-label">Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" id="userEmail">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="userEmailVerified" class="col-sm-2 col-form-label">Verified</label>
+                                    <div class="col-sm-2">
+                                        <input type="checkbox" disabled class="form-control" id="userEmailVerified">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="form-group row">
-                      <label for="userEmailVerified" class="col-sm-2 col-form-label">Verified</label>
-                      <div class="col-sm-2">
-                        <input type="checkbox" disabled class="form-control" id="userEmailVerified">
-                      </div>
-                    </div>
-                  </form>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-    <!-- END Account Modal -->
+</div>
+<!-- END Account Modal -->
 
 
-
-    <!-- loader -->
-    <div>
-      <!-- About Modal -->
-      <div class="modal fade" id="cover" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- LOADER -->
+<div>
+    <div class="modal fade" id="cover" tabindex="-1" role="dialog" aria-labelledby="coverModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="graphics-object">
             <div class="modal-body">
-              <img src="/img/countdown.gif" height="275" width="500" alt="">
+                <img src="/img/countdown.gif" height="275" width="500" alt="">
             </div>
         </div>
-      </div>
-      <!-- END About Modal -->
     </div>
+</div>
+<!-- END LOADER MODAL -->
+
+<!-- SAME REVIEW NOTICE MODAL -->
+<div class="modal fade" id="sameReviewModal" tabindex="-1" role="dialog" aria-labelledby="sameReviewModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="sameReviewModalLabel" style="text-align: center;">You betrayed the
+                    LAW!!</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-primary" role="alert">
+                    <em>You trying to leave the same review twice, eh wise guy?</em>
+                </div>
+                <img src="/img/movieGifs/bladerunner.gif" height="200" width="350" class="centerImg"
+                     alt="Bladerunner gif"/>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END SAME REVIEW NOTICE MODAL -->
 
 
-    <!-- FOOTER -->
-    <div class="footer navbar-dark bg-dark">
-      <!-- Copyright -->
-      <div class="text-center pt-3"><i class="fas fa-copyright text-cyan"></i> 2020:&nbsp;
+<!-- FOOTER -->
+<div class="footer navbar-dark bg-dark">
+    <!-- Copyright -->
+    <div class="text-center pt-3"><i class="fas fa-copyright text-cyan"></i> 2020:&nbsp;
         <a class="text-white" href="https://simplyatx.com/">SimplyATX.com</a>&nbsp;
         <i class="fas fa-grip-vertical text-cyan"></i>&nbsp;
         <a class="text-white" href="/privacyPolicy" target="_blank">Privacy</a>&nbsp;
         <i class="fas fa-grip-vertical text-cyan"></i>&nbsp;
         <a class="text-white" href="/termsOfService" target="_blank">ToS</a>&nbsp;
         <i class="fas fa-grip-vertical text-cyan"></i>&nbsp;
-        <a class="text-white" href="https://www.vecteezy.com/free-vector/popcorn" target="_blank">Popcorn Vectors by Vecteezy</a>&nbsp;
+        <a class="text-white" href="https://www.vecteezy.com/free-vector/popcorn" target="_blank">Popcorn Vectors by
+            Vecteezy</a>&nbsp;
         <i class="fas fa-grip-vertical text-cyan"></i>&nbsp;
-        Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
-      </div>
-      <div id="load" style="color: #d42c08">Firebase SDK Loading&hellip;</div>
+        Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a
+                href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
     </div>
-    <!-- END FOOTER -->
+    <div id="load" style="color: #d42c08">Firebase SDK Loading&hellip;</div>
+</div>
+<!-- END FOOTER -->
 
-    <!-- EXTERNAL SCRIPTS -->
-    <!-- JS, Popper.js, and JQuery -->
-    <script  src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<!-- EXTERNAL SCRIPTS -->
+<!-- JS, Popper.js, and JQuery -->
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 
-    <!-- CUSTOM SCRIPTS -->
-    <script rel="script" type="application/javascript" src="/js/show.js"></script>
-    <script rel="script" type="application/javascript" src="/js/app.js"></script>
-    <script rel="script" type="application/javascript" src="/js/searchRestUtility.js"></script>
-    <script rel="script" type="application/javascript" src="/js/feedbackRestUtility.js"></script>
-	<script rel="script" type="application/javascript" src="/js/dbConnectionUtility.js"></script>
-  </body>
+<!-- CUSTOM SCRIPTS -->
+<script rel="script" type="application/javascript" src="/js/show.js"></script>
+<script rel="script" type="application/javascript" src="/js/app.js"></script>
+<script rel="script" type="application/javascript" src="/js/searchRestUtility.js"></script>
+<script rel="script" type="application/javascript" src="/js/feedbackRestUtility.js"></script>
+<script rel="script" type="application/javascript" src="/js/dbConnectionUtility.js"></script>
+</body>
 </html>

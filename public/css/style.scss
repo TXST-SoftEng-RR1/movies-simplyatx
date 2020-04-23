@@ -84,3 +84,45 @@ body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvet
 .text-cyan { color: #35bdff; }
 
 .floatLeft { float: left; }
+
+.centerImg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*
+  Idea from https://scriptgenerator.net/html-css-custom-scrollbar-code-generator/
+ */
+.scrollbar {
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: #d42c08;
+
+    &:horizontal {
+      height: 14px;
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    border: 1px #787878 solid;
+    border-radius: 10px;
+    box-shadow: 0 0 100px #eeeeee inset;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #35aec3;
+    border: 1px solid #000000;
+    border-radius: 16px;
+
+    &:hover {
+      background-color: #58a1d3;
+      border: 1px solid #333333;
+    }
+
+    &:active {
+      background-color: #337996;
+      border: 1px solid #333333;
+    }
+  }
+}
