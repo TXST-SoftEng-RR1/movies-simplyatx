@@ -99,16 +99,32 @@ function getTitleElement(imdbResult) {
         poster = typeof imdbResult.image !== 'undefined' ? imdbResult.image : "/img/svg/ninja.svg";
         trailer = ((imdbResult.trailer) && (imdbResult.trailer.embedUrl)) !== undefined ? imdbResult.trailer.embedUrl : "#";
 
-        if (typeof imdbResult.genre !== undefined) {
+        if (typeof imdbResult.genre !== undefined && imdbResult.genre.length > 1) {
             for (let aGenre of imdbResult.genre) {
                 genre += aGenre;
                 genre += "; "
             }
         }
         let titleObj = new show(id, title, url, releaseDate, description, poster, trailer, genre);
+        updateBadgesIfDataExists(id);
         return titleObj.constructEntry();
     } else {
         return "No results.";
+    }
+}
+
+// one time data update if it exists, otherwise skip
+// no listener at this point as that is expensive, only listen if a user engages with a review
+function updateBadgesIfDataExists(titleId) {
+    let reviewObj = firebase.database().ref('/Reviews/' + titleId);
+    if (reviewObj !== null) {
+        $("#" + titleId + "-e1-grinBadge").html(reviewObj.e1);
+        $("#" + titleId + "-e2-mehBadge").html(reviewObj.e2);
+        $("#" + titleId + "-e3-snoreBadge").html(reviewObj.e3);
+        $("#" + titleId + "-e4-expressionlessBadge").html(reviewObj.e4);
+        $("#" + titleId + "-e5-hmmBadge").html(reviewObj.e5);
+        $("#" + titleId + "-e6-cryBadge").html(reviewObj.e6);
+        $("#" + titleId + "-e7-angryBadge").html(reviewObj.e7);
     }
 }
 

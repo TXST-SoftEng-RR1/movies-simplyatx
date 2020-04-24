@@ -8,7 +8,7 @@ $(document).ready(function () {
     let subject = document.getElementById("feedbackSubject");
     let message = document.getElementById("feedbackMessage");
     let successNotice = $("#feedbackSuccessNotice");
-    let spinner = $("#feedbackSpinner")
+    let spinner = $("#feedbackSpinner");
 
     $("#submitButton").on('click', function () {
         successNotice.addClass('hidden');
@@ -26,7 +26,8 @@ $(document).ready(function () {
                 "feedbackMessage": message.value
             }).done(function (data) {
                 console.log("Response from sending anonymous feedback: " + data);
-                $("#feedbackSuccessNotice").removeClass('hidden');
+                spinner.addClass('hidden');
+                successNotice.removeClass('hidden');
             });
         } else {    // non-anonymous
         console.log("in non-anonymous");
