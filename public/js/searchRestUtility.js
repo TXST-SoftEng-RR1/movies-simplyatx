@@ -62,6 +62,21 @@ function searchImdb(origin, searchCriteria) {
             movieReelImg.addClass("hidden");
             $("#searchPromptId").addClass("hidden");
             searchResultsDiv.append(titleHtmlElement);
+
+            let movieID = jsonData.results[i].url.toString().substring(7, 16);
+
+            firebase.database().ref('/Reviews/' + movieID).on('value', function(snapshot) {
+                let reviewObj = snapshot.val();
+                if (reviewObj !== null) {
+                    $("#" + movieID + "-e1-grinBadge").html(reviewObj.e1);
+                    $("#" + movieID + "-e2-mehBadge").html(reviewObj.e2);
+                    $("#" + movieID + "-e3-snoreBadge").html(reviewObj.e3);
+                    $("#" + movieID + "-e4-expressionlessBadge").html(reviewObj.e4);
+                    $("#" + movieID + "-e5-hmmBadge").html(reviewObj.e5);
+                    $("#" + movieID + "-e6-cryBadge").html(reviewObj.e6);
+                    $("#" + movieID + "-e7-angryBadge").html(reviewObj.e7);
+                }
+            });
         }
         $("#cover").modal('hide');
     });
