@@ -49,21 +49,42 @@ function searchImdb(origin, searchCriteria) {
     $.get(origin + "/getDetailedImdbResults", {
         "userInput": searchCriteria,
     }).done(function (data) {
-        jsonData = JSON.parse(data);
-        console.log("Invoking /searchImdb. Result: " + jsonData);
-        console.log("Title: " + jsonData.results[0].name);
+        if (data !== "No results") {
+            jsonData = JSON.parse(data);
+            console.log("Invoking /searchImdb. Result: " + jsonData);
+            console.log("Title: " + jsonData.results[0].name);
 
-        // clear any previous search results
-        searchResultsDiv.empty();
+            // clear any previous search results
+            searchResultsDiv.empty();
 
-        let titleHtmlElement = null;
-        for (let i = 0; i < jsonData.results.length; i++) {
-            titleHtmlElement = getTitleElement(jsonData.results[i]);
-            movieReelImg.addClass("hidden");
-            $("#searchPromptId").addClass("hidden");
-            searchResultsDiv.append(titleHtmlElement);
+            let titleHtmlElement = null;
+            for (let i = 0; i < jsonData.results.length; i++) {
+                titleHtmlElement = getTitleElement(jsonData.results[i]);
+                movieReelImg.addClass("hidden");
+                $("#searchPromptId").addClass("hidden");
+                searchResultsDiv.append(titleHtmlElement);
+
+                let movieID = jsonData.results[i].url.toString().substring(7, 16);
+
+                firebase.database().ref('/Reviews/' + movieID).on('value', function (snapshot) {
+                    let reviewObj = snapshot.val();
+                    if (reviewObj !== null) {
+                        $("#" + movieID + "-e1-grinBadge").html(reviewObj.e1);
+                        $("#" + movieID + "-e2-mehBadge").html(reviewObj.e2);
+                        $("#" + movieID + "-e3-snoreBadge").html(reviewObj.e3);
+                        $("#" + movieID + "-e4-expressionlessBadge").html(reviewObj.e4);
+                        $("#" + movieID + "-e5-hmmBadge").html(reviewObj.e5);
+                        $("#" + movieID + "-e6-cryBadge").html(reviewObj.e6);
+                        $("#" + movieID + "-e7-angryBadge").html(reviewObj.e7);
+                    }
+                });
+            }
+            $("#cover").modal('hide');
+        } else {
+            $("#cover").modal('hide');
+            $("#noResultsModal").modal('toggle');
+            $("#cover").modal('hide');
         }
-        $("#cover").modal('hide');
     });
 }
 
@@ -99,16 +120,32 @@ function getTitleElement(imdbResult) {
         poster = typeof imdbResult.image !== 'undefined' ? imdbResult.image : "/img/svg/ninja.svg";
         trailer = ((imdbResult.trailer) && (imdbResult.trailer.embedUrl)) !== undefined ? imdbResult.trailer.embedUrl : "#";
 
-        if (typeof imdbResult.genre !== undefined) {
+        if (imdbResult.genre && imdbResult.genre.length > 1) {
             for (let aGenre of imdbResult.genre) {
                 genre += aGenre;
                 genre += "; "
             }
         }
         let titleObj = new show(id, title, url, releaseDate, description, poster, trailer, genre);
+        updateBadgesIfDataExists(id);
         return titleObj.constructEntry();
     } else {
         return "No results.";
+    }
+}
+
+// one time data update if it exists, otherwise skip
+// no listener at this point as that is expensive, only listen if a user engages with a review
+function updateBadgesIfDataExists(titleId) {
+    let reviewObj = firebase.database().ref('/Reviews/' + titleId);
+    if (reviewObj !== null) {
+        $("#" + titleId + "-e1-grinBadge").html(reviewObj.e1);
+        $("#" + titleId + "-e2-mehBadge").html(reviewObj.e2);
+        $("#" + titleId + "-e3-snoreBadge").html(reviewObj.e3);
+        $("#" + titleId + "-e4-expressionlessBadge").html(reviewObj.e4);
+        $("#" + titleId + "-e5-hmmBadge").html(reviewObj.e5);
+        $("#" + titleId + "-e6-cryBadge").html(reviewObj.e6);
+        $("#" + titleId + "-e7-angryBadge").html(reviewObj.e7);
     }
 }
 
