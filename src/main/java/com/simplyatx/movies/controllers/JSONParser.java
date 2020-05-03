@@ -17,7 +17,7 @@
 package com.simplyatx.movies.controllers;
 
 /**
- *
+ * @author Justin Franz
  */
 class JSONParser {
 

@@ -129,7 +129,7 @@ public class SearchController {
     public String getDetailedImdbResults(String userInput) throws IOException {
         String packet = retrieve(userInput);
 
-        if (packet.equals("No results"))
+        if ("No results".equals(packet))
             return "No results";
 
         int start = packet.indexOf("(");

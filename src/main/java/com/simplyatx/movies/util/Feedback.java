@@ -73,7 +73,7 @@ public class Feedback implements FeedbackWorkflow {
         String retVal_1 = sendEmailToAdmin(USERNAME, feedbackSubject, feedbackMessage);
         String retVal_2 = sendEmailToUser(feedbackName, feedbackEmail, feedbackSubject, feedbackMessage);
 
-        if (retVal_1.equals("Succeed") && retVal_2.equals("Succeed")) {
+        if ("Succeed".equals(retVal_1) && "Succeed".equals(retVal_2)) {
             return "Succeed";
         } else {
             return "Fail";
