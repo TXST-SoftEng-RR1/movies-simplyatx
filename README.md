@@ -1,6 +1,8 @@
 # movies-simplyatx
 Movie and TV show info aggregation website.
 
+[![first-timers-only](https://img.shields.io/badge/first--timers--only-friendly-blue.svg?style=flat-square)](https://www.firsttimersonly.com/)  &nbsp;&nbsp;<img src="https://www.code-inspector.com/project/7609/score/svg" alt="code quality score">
+
 ## Front-end static and Firebase
 
 ### Dependencies

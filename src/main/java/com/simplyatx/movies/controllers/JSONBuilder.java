@@ -20,10 +20,7 @@ package com.simplyatx.movies.controllers;
  * @author Justin Franz
  */
 class JSONBuilder {
-    private StringBuilder sb = new StringBuilder("{");
-
-    public JSONBuilder() {
-    }
+    private final StringBuilder sb = new StringBuilder("{");
 
     /**
      *
@@ -38,13 +35,16 @@ class JSONBuilder {
     }
 
     /**
-     *
+     * Appends closing bracket to IMDb object to make it a valid JSON.
      * @return
      */
     public String make() {
         return sb.append("}").toString();
     }
 
+    /**
+     *
+     */
     public void empty() {
         sb.delete(0, sb.length());
     }

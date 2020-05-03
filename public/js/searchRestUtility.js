@@ -123,7 +123,7 @@ function getTitleElement(imdbResult) {
         if (imdbResult.genre && imdbResult.genre.length > 1) {
             for (let aGenre of imdbResult.genre) {
                 genre += aGenre;
-                genre += "; "
+                genre += "; ";
             }
         }
         let titleObj = new show(id, title, url, releaseDate, description, poster, trailer, genre);
@@ -167,5 +167,5 @@ $(document).ready(function () {
         if (event.which === ENTER_KEY_CODE) {
             searchBtn.click();
         }
-    })
+    });
 });
