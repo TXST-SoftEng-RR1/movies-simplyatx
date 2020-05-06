@@ -89,6 +89,10 @@ http://localhost:8080/swagger-ui.html
 
 ### Jasypt Encryption
 
+
+### Class diagram
+![Class Diagram](public/img/doc/SimplyATX_Class_Diagram.png)
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 
