@@ -117,6 +117,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         document.getElementById('userEmail').placeholder = email;
                         if (emailVerified) {
                             document.getElementById('userEmailVerified').checked = true;
+                        } else {
+                            user.sendEmailVerification().then(function() {
+                                // Email sent.
+                            }).catch(function(error) {
+                                // An error happened.
+                            });
                         }
 
                     });
