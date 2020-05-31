@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020. SimplyATX.com
+ * Copyright (c) 2020. FilmsReel.com
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -14,22 +14,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.simplyatx.movies.controllers;
+package com.filmsreel.movies;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.logging.Logger;
+/**
+ * @author Borislav S. Sabotinov
+ */
+@SpringBootApplication
+public class MoviesApplication {
 
-@RestController
-public class MovieController {
-    Logger logger = Logger.getLogger(MovieController.class.getName());
-    @Value("${TARGET:World}")
-    String message;
-
-    @GetMapping("/hello")
-    String hello() {
-        return "Graphs says Hello " + message + "!";
+    /**
+     * Launches SpringBoot application, which listens on port 8080
+     * {@code localhost:8080}
+     * @param args
+     */
+    public static void main(String[] args) {
+        SpringApplication.run(MoviesApplication.class, args);
     }
 }

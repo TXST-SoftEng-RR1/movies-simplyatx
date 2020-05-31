@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020. SimplyATX.com
+ * Copyright (c) 2020. FilmsReel.com
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -14,23 +14,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.simplyatx.movies;
+package com.filmsreel.movies.controllers;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author Borislav S. Sabotinov
+ * This controller serves views to the fron-tend
  */
-@SpringBootApplication
-public class MoviesApplication {
+@Controller
+public class ViewsController {
+    /**
+     *
+     * @return view privacyPolicy.html
+     */
+    @RequestMapping(value={"/privacyPolicy"})
+    public String privacyPolicy() { return "privacyPolicy"; }
 
     /**
-     * Launches SpringBoot application, which listens on port 8080
-     * {@code localhost:8080}
-     * @param args
+     *
+     * @return view termsOfService.html
      */
-    public static void main(String[] args) {
-        SpringApplication.run(MoviesApplication.class, args);
-    }
+    @RequestMapping(value={"/termsOfService"})
+    public String termsOfService() { return "termsOfService"; }
 }

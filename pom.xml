@@ -8,11 +8,11 @@
 		<version>2.2.1.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.simplyatx</groupId>
+	<groupId>com.filmsreel</groupId>
 	<artifactId>movies</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>movies-simplyatx</name>
-	<description>Movie and TV show info aggregation website</description>
+	<name>FilmsReel</name>
+	<description>Movie and TV show review and info aggregation website.</description>
 
 	<properties>
 		<java.version>1.8</java.version>

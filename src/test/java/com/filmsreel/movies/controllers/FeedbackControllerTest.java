@@ -1,4 +1,4 @@
-package com.simplyatx.movies.controllers;
+package com.filmsreel.movies.controllers;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

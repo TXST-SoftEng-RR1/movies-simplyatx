@@ -1,4 +1,4 @@
-package com.simplyatx.movies.config;
+package com.filmsreel.movies.config;
 
 import com.ulisesbocchio.jasyptspringboot.annotation.EncryptablePropertySource;
 import org.springframework.context.annotation.Configuration;

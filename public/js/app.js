@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-        document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+        // document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
 
         // Initialize the FirebaseUI Widget using Firebase.
         var ui = new firebaseui.auth.AuthUI(firebase.auth());

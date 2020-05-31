@@ -1,4 +1,4 @@
-package com.simplyatx.movies.services;
+package com.filmsreel.movies.services;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;

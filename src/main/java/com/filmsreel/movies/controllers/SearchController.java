@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020. SimplyATX.com
+ * Copyright (c) 2020. FilmsReel.com
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -14,14 +14,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.simplyatx.movies.controllers;
+package com.filmsreel.movies.controllers;
 
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;

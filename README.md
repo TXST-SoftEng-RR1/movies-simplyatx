@@ -1,5 +1,6 @@
-# movies-simplyatx
+# Films Reel
 Movie and TV show info aggregation website.
+Allows users to sign up for an account, review titles, and build watch lists. 
 
 [![first-timers-only](https://img.shields.io/badge/first--timers--only-friendly-blue.svg?style=flat-square)](https://www.firsttimersonly.com/)  &nbsp;&nbsp;<img src="https://www.code-inspector.com/project/7609/score/svg" alt="code quality score">
 
@@ -91,7 +92,7 @@ http://localhost:8080/swagger-ui.html
 
 
 ### Class diagram
-![Class Diagram](public/img/doc/SimplyATX_Class_Diagram.png)
+![Class Diagram](public/img/doc/FilmsReel_Class_Diagram.png)
 
 ### Reference Documentation
 For further reference, please consider the following sections:

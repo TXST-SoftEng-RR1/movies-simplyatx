@@ -1,7 +1,6 @@
-package com.simplyatx.movies.util;
+package com.filmsreel.movies.util;
 
-import com.simplyatx.movies.services.JasyptService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.filmsreel.movies.services.JasyptService;
 import org.springframework.context.ApplicationContext;
 
 import javax.mail.*;
@@ -16,7 +15,7 @@ import java.util.Properties;
  *
  */
 public class Feedback implements FeedbackWorkflow {
-    private static final String USERNAME = "admin@simplyatx.com";
+    private static final String USERNAME = "admin@filmsreel.com";
     private Properties props;
     private Session session;
     private JasyptService jasyptService;
@@ -57,7 +56,7 @@ public class Feedback implements FeedbackWorkflow {
      */
     @Override
     public String initAnonymousWorkflow(String feedbackMessage, String feedbackSubject) {
-        return sendEmailToAdmin("admin@simplyatx.com", feedbackSubject, feedbackMessage);
+        return sendEmailToAdmin("admin@filmsreel.com", feedbackSubject, feedbackMessage);
     }
 
     /**
@@ -121,7 +120,7 @@ public class Feedback implements FeedbackWorkflow {
             setProperties();
             setSession();
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("admin@simplyatx.com"));
+            message.setFrom(new InternetAddress("admin@filmsreel.com"));
             message.setRecipients(
                     Message.RecipientType.TO,
                     InternetAddress.parse(decodeEmail)
@@ -150,7 +149,7 @@ public class Feedback implements FeedbackWorkflow {
                 .append(", \n")
                 .append("We received your feedback; thank you!\n")
                 .append("We are working on it and will get back to you.\n")
-                .append("Regards - the SimplyATX team");
+                .append("Regards - the FilmsReel team");
         return stringBuilder.toString();
     }
 }

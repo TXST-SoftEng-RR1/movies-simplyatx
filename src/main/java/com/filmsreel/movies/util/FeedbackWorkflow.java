@@ -1,4 +1,4 @@
-package com.simplyatx.movies.util;
+package com.filmsreel.movies.util;
 
 public interface FeedbackWorkflow {
     String initAnonymousWorkflow(String feedbackSubject, String feedbackMessage);

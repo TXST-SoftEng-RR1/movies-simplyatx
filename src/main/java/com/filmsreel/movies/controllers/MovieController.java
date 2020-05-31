@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020. SimplyATX.com
+ * Copyright (c) 2020. FilmsReel.com
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -14,28 +14,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.simplyatx.movies.controllers;
+package com.filmsreel.movies.controllers;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-/**
- * @author Borislav S. Sabotinov
- * This controller serves views to the fron-tend
- */
-@Controller
-public class ViewsController {
-    /**
-     *
-     * @return view privacyPolicy.html
-     */
-    @RequestMapping(value={"/privacyPolicy"})
-    public String privacyPolicy() { return "privacyPolicy"; }
+import java.util.logging.Logger;
 
-    /**
-     *
-     * @return view termsOfService.html
-     */
-    @RequestMapping(value={"/termsOfService"})
-    public String termsOfService() { return "termsOfService"; }
+@RestController
+public class MovieController {
+    Logger logger = Logger.getLogger(MovieController.class.getName());
+    @Value("${TARGET:World}")
+    String message;
+
+    @GetMapping("/hello")
+    String hello() {
+        return "Graphs says Hello " + message + "!";
+    }
 }

@@ -1,15 +1,6 @@
-package com.simplyatx.movies.controllers;
+package com.filmsreel.movies.controllers;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
-import java.util.Properties;
-
-import com.simplyatx.movies.services.JasyptService;
-import com.simplyatx.movies.util.Feedback;
+import com.filmsreel.movies.util.Feedback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020. SimplyATX.com
+ * Copyright (c) 2020. FilmsReel.com
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.simplyatx.movies.config;
+package com.filmsreel.movies.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -51,9 +51,9 @@ public class SwaggerConfig {
      * @return ApiInfo object initialized with information about our API
      */
     private ApiInfo apiEndPointsInfo() {
-        return new ApiInfoBuilder().title("SimplyATX Movie API")
-                .description("Back-end component for the SimplyATX movie website.")
-                .contact(new Contact("Justin, Lanlan, Boris", "simplyatx.com", "admin@simplyatx.com"))
+        return new ApiInfoBuilder().title("FilmsReel Movie API")
+                .description("Back-end component for the FilmsReel movie website.")
+                .contact(new Contact("Justin, Lanlan, Boris", "filmsreel.com", "admin@filmsreel.com"))
                 .license("GNU Affero General Public License")
                 .licenseUrl("http://www.gnu.org/licenses/")
                 .version("1.0.0")
