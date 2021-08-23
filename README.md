@@ -59,7 +59,7 @@ In the main project directory, where `pom.xml` resides, execute:
 `mvn clean package`
 Maven will build the project and generate a `target` directory, which will contain the project JAR package.
 To build and skip unit tests, execute:
-`mvn clean package -DskipTests`
+`mvn clean package`
 
 ### Run the back-end
 
@@ -68,7 +68,7 @@ With the back-end built and `target` directory with JAR present, open a CMD wind
 Execute: `java -jar movies-*.jar`
 
 Open a browser and navigate to:
-`localhost:8080/graphs`
+`localhost:8080`
 
 ### Viewing the API
 To view the available API endpoints and details about them:
@@ -80,13 +80,40 @@ http://localhost:8080/swagger-ui.html
 
 ### Deploy the back-end
 
+First, ensure you are on the right project: 
+`gcloud config set project movies-simplyatx`
+
 1. Build Docker image:
 `gcloud builds submit --tag gcr.io/movies-simplyatx/movies`
 2. Deploy the image:
 `gcloud beta run deploy --image gcr.io/movies-simplyatx/movies`
     - Select [1] Cloud Run (fully managed) for the target platform
-    - Select [6] us-central1 for the region
+    - Select [22] us-central1 for the region
     - Press `Enter` to select the default for service name (movies)
+
+### Deploy the front-end
+
+List Firebase projects: 
+`firebase projects:list`
+
+ensure you are using the right Firebase project. 
+It should be movies-simplyatx. If it is not, switch to it with:  
+`firebase use <project_id>`
+
+To deploy the full client-side app:    
+`firebase deploy`   
+To deploy only functions:    
+`firebase deploy --only functions`    
+To deploy everything except functions:    
+`firebase deploy --only hosting` 
+
+## Upgrading Tools
+
+To upgrade Firebase CLI: 
+`npm upgrade firebase-tools -g`    
+
+Upgrade packages in package.json 
+
 
 ### Jasypt Encryption
 
